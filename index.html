@@ -1,0 +1,2430 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>HxW_1996 — SEVENTEEN HOSHI × WOOZI 豪雨小分隊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Nunito:wght@600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================================
+           HxW_1996 Y2K 夢核手繪桌面 OS 全局變數與基礎樣式
+        ========================================================= */
+        :root {
+            --os-cream: #FCFBF4;
+            --os-line: #5D535E;
+            --os-ink: #3E363F;
+            --os-win-blue: #B7D8F2;
+            --os-win-light: #E4F2FC;
+            --os-pink-grid: #F9D7E3;
+            --os-mint: #CBEAD9;
+            --hoshi-orange: #FF8C42;
+            --hoshi-peach: #FFD3B5;
+            --woozi-pink: #FF9EBB;
+            --woozi-milk: #FFF7F0;
+        }
+
+        * {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Nunito', 'Noto Sans TC', sans-serif;
+            background-color: #FFFFFF;
+            color: var(--os-ink);
+        }
+
+        html.pumpkin-cursor-active,
+        html.pumpkin-cursor-active * {
+            cursor: none !important;
+        }
+
+        .font-pixel {
+            font-family: 'DotGothic16', 'Noto Sans TC', monospace;
+        }
+
+        .font-hand {
+            font-family: 'ZCOOL KuaiLe', 'Nunito', 'Noto Sans TC', cursive, sans-serif;
+        }
+
+        #hero-title {
+            letter-spacing: 0.1em;
+            line-height: 1.55;
+        }
+
+        #hero-title .hero-title-name {
+            margin-left: 0.18em;
+        }
+
+        #hero-title .hero-title-separator {
+            margin: 0 0.3em;
+        }
+
+        #hero-subtitle {
+            letter-spacing: 0.16em;
+        }
+
+        /* =========================================================
+           2006 復古手繪雙線視窗樣式
+        ========================================================= */
+        .y2k-window {
+            background: #FFFFFF;
+            border: 2.5px solid var(--os-line);
+            border-radius: 11px 13px 10px 12px / 12px 10px 13px 11px;
+            box-shadow: 4px 4px 0px rgba(93, 83, 94, 0.25), inset 0 0 0 2px #F4F9FD;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .y2k-window:hover {
+            box-shadow: 6px 6px 0px rgba(93, 83, 94, 0.32), inset 0 0 0 2px #F4F9FD;
+        }
+
+        .y2k-titlebar {
+            background: linear-gradient(180deg, #CFE7FA 0%, #A9D0F0 100%);
+            border-bottom: 2px solid var(--os-line);
+            padding: 5px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .y2k-titlebar.pink-bar {
+            background: linear-gradient(180deg, #FCE0EA 0%, #F7C2D5 100%);
+        }
+
+        .y2k-titlebar.mint-bar {
+            background: linear-gradient(180deg, #DFF5E3 0%, #BEE7C6 100%);
+        }
+
+        .y2k-win-btns {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+
+        .y2k-win-btn {
+            width: 17px;
+            height: 17px;
+            background: #F4F8FC;
+            border: 1.8px solid var(--os-line);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--os-line);
+            box-shadow: 1px 1px 0px rgba(93, 83, 94, 0.3);
+        }
+
+        .y2k-win-btn.close-btn {
+            background: #F8B4C4;
+        }
+
+        .y2k-btn {
+            background: linear-gradient(180deg, #FFFFFF 0%, #EDF5FC 100%);
+            border: 2px solid var(--os-line);
+            border-radius: 8px;
+            box-shadow: 2px 2px 0px var(--os-line);
+            transition: all 0.12s ease;
+            cursor: pointer;
+        }
+
+        .y2k-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.02);
+        }
+
+        .y2k-btn:active {
+            transform: translate(1.5px, 1.5px);
+            box-shadow: 0.5px 0.5px 0px var(--os-line);
+        }
+
+        /* 粉色 / 藍色 格子底紋 */
+        .pink-checkerboard {
+            background-color: #FFF9FB;
+            background-image: 
+                linear-gradient(45deg, #FADCE6 25%, transparent 25%), 
+                linear-gradient(-45deg, #FADCE6 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #FADCE6 75%), 
+                linear-gradient(-45deg, transparent 75%, #FADCE6 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        .blue-checkerboard {
+            background-color: #F7FBFF;
+            background-image: 
+                linear-gradient(45deg, #DCEEFB 25%, transparent 25%), 
+                linear-gradient(-45deg, #DCEEFB 25%, transparent 25%), 
+                linear-gradient(45deg, transparent 75%, #DCEEFB 75%), 
+                linear-gradient(-45deg, transparent 75%, #DCEEFB 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+
+        /* =========================================================
+           超寬橫向桌面視口與多層手繪視差背景
+        ========================================================= */
+        #viewport {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #FFFFFF;
+            background-image:
+                linear-gradient(rgba(93, 83, 94, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(93, 83, 94, 0.045) 1px, transparent 1px);
+            background-repeat: repeat, repeat;
+            background-size: 32px 32px, 32px 32px;
+            background-position: left top, left top;
+        }
+
+        .rainbow-drift {
+            position: absolute;
+            z-index: 0;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 190px;
+            overflow: hidden;
+            transform: translateY(-50%);
+            background-image: url('BG.RAINBOW_PNG.png');
+            background-repeat: repeat-x;
+            background-size: 760px 760px;
+            background-position: 0 center;
+            animation: rainbowDrift 36s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rainbowDrift {
+            to { background-position: -760px center; }
+        }
+
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            will-change: transform;
+            pointer-events: none;
+        }
+
+        #layer-far { width: calc(4850px + 100vw); }
+        #layer-midground {
+            width: calc(4850px + 100vw);
+            z-index: 1;
+        }
+        #layer-foreground {
+            width: calc(4850px + 100vw);
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        @keyframes skyFloat {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            25% { transform: translate3d(18px, -24px, 0); }
+            50% { transform: translate3d(-12px, -42px, 0); }
+            75% { transform: translate3d(-22px, -14px, 0); }
+        }
+
+        .sky-float {
+            position: absolute;
+            width: var(--sky-size, 76px);
+            height: var(--sky-size, 76px);
+            object-fit: contain;
+            opacity: 1;
+            pointer-events: none;
+            animation: skyFloat var(--sky-duration, 8s) ease-in-out infinite;
+        }
+
+        #pumpkin-cursor {
+            position: fixed;
+            z-index: 1000;
+            width: 108px;
+            height: 108px;
+            object-fit: contain;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        @keyframes playerJump {
+            0%, 100% { transform: translateY(0); }
+            45% { transform: translateY(-150px); }
+        }
+
+        #player-stage.is-jumping .chibi-body-anim {
+            animation: playerJump 900ms cubic-bezier(0.3, 0, 0.55, 1);
+        }
+
+        #player-stage.is-racing .chibi-body-anim {
+            animation: chibiWalkBounce 0.42s infinite ease-in-out;
+        }
+
+        #player-stage.is-racing.is-jumping .chibi-body-anim {
+            animation: playerJump 900ms cubic-bezier(0.3, 0, 0.55, 1);
+        }
+
+        #race-track {
+            position: fixed;
+            z-index: 44;
+            left: 0;
+            bottom: 44px;
+            width: 100vw;
+            height: 42px;
+            border-bottom: 2px dashed rgba(93, 83, 94, 0.5);
+            pointer-events: none;
+        }
+
+        #race-obstacle {
+            position: absolute;
+            bottom: 0;
+            left: -60px;
+            width: 28px;
+            height: 42px;
+            border-radius: 12px 12px 3px 3px;
+            background: #79AD82;
+            box-shadow: inset -4px 0 #62966D;
+            visibility: hidden;
+        }
+
+        #race-obstacle::before,
+        #race-obstacle::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 13px;
+            border: 4px solid #79AD82;
+        }
+
+        #race-obstacle::before {
+            top: 16px;
+            left: -9px;
+            border-right: 0;
+            border-bottom: 0;
+            border-radius: 7px 0 0;
+        }
+
+        #race-obstacle::after {
+            top: 8px;
+            right: -9px;
+            border-left: 0;
+            border-bottom: 0;
+            border-radius: 0 7px 0 0;
+        }
+
+        #race-track::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 5px;
+            height: 2px;
+            background: repeating-linear-gradient(90deg, rgba(93, 83, 94, 0.55) 0 10px, transparent 10px 24px);
+            animation: raceGround 0.55s linear infinite;
+        }
+
+        @keyframes raceGround {
+            to { background-position: -24px 0; }
+        }
+
+        #race-controls {
+            position: fixed;
+            z-index: 46;
+            top: 10px;
+            bottom: auto;
+            right: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid var(--os-line);
+            border-radius: 999px;
+            padding: 6px 8px 6px 12px;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 2px 2px 0 rgba(93, 83, 94, 0.25);
+            font-size: 11px;
+            font-weight: 900;
+        }
+
+        @media (max-width: 768px) {
+            #race-controls {
+                top: 8px;
+                right: 10px;
+            }
+
+            #top-navigation {
+                top: 48px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        /* =========================================================
+           吊飾搖晃物理動畫 (Section 1 壓克力吊飾)
+        ========================================================= */
+        @keyframes charmSwing {
+            0% { transform: rotate(0deg); }
+            15% { transform: rotate(16deg); }
+            30% { transform: rotate(-14deg); }
+            45% { transform: rotate(10deg); }
+            60% { transform: rotate(-7deg); }
+            75% { transform: rotate(4deg); }
+            90% { transform: rotate(-2deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .charm-pendulum {
+            transform-origin: top center;
+            cursor: pointer;
+        }
+
+        .charm-pendulum.swinging {
+            animation: charmSwing 1.35s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+        }
+
+        /* =========================================================
+           可動 Q 版雙人主角舞台與互動台詞泡泡 (整合使用者親繪精靈圖)
+        ========================================================= */
+        #player-stage {
+            position: fixed;
+            bottom: 50px;
+            left: 8%;
+            z-index: 45;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            #player-stage {
+                left: 3%;
+                transform: scale(0.84);
+                transform-origin: bottom left;
+            }
+        }
+
+        .chibi-clickable {
+            pointer-events: auto;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.15s ease;
+        }
+
+        .chibi-clickable:hover {
+            transform: translateY(-3px);
+        }
+
+        .chibi-clickable:active {
+            transform: scale(0.95);
+        }
+
+        .facing-left .chibi-flip {
+            transform: scaleX(-1);
+        }
+
+        @keyframes chibiWalkBounce {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(-4deg); }
+            50% { transform: translateY(0px) rotate(0deg); }
+            75% { transform: translateY(-10px) rotate(4deg); }
+        }
+
+        .is-walking .chibi-body-anim {
+            animation: chibiWalkBounce 0.42s infinite ease-in-out;
+        }
+
+        @keyframes idleBreathe {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.03); }
+        }
+
+        .chibi-body-anim {
+            transform-origin: bottom center;
+            animation: idleBreathe 2.1s infinite ease-in-out;
+        }
+
+        /* 角色台詞氣泡彈出動畫 */
+        @keyframes bubblePop {
+            0% { opacity: 0; transform: translate(-50%, 8px) scale(0.75); }
+            15% { opacity: 1; transform: translate(-50%, 0px) scale(1.05); }
+            25% { transform: translate(-50%, 0px) scale(1); }
+            85% { opacity: 1; transform: translate(-50%, 0px) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -6px) scale(0.95); }
+        }
+
+        .speech-bubble {
+            position: absolute;
+            bottom: 124px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFFFFF;
+            border: 2.5px solid var(--os-line);
+            border-radius: 14px;
+            padding: 5px 12px;
+            font-size: 13px;
+            font-weight: 900;
+            color: var(--os-ink);
+            white-space: nowrap;
+            box-shadow: 3px 3px 0px rgba(93, 83, 94, 0.25);
+            z-index: 60;
+            pointer-events: none;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px 7px 0;
+            border-style: solid;
+            border-color: var(--os-line) transparent transparent;
+        }
+
+        .speech-bubble.show {
+            animation: bubblePop 2.4s ease forwards;
+        }
+
+        /* 光碟旋轉與音波跳動 */
+        @keyframes spinDisc {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .disc-spinning {
+            animation: spinDisc 4.5s linear infinite;
+        }
+
+        @keyframes eqBar {
+            0%, 100% { height: 4px; }
+            50% { height: 16px; }
+        }
+
+        .eq-active span:nth-child(1) { animation: eqBar 0.5s infinite ease-in-out; }
+        .eq-active span:nth-child(2) { animation: eqBar 0.4s infinite ease-in-out 0.1s; }
+        .eq-active span:nth-child(3) { animation: eqBar 0.6s infinite ease-in-out 0.2s; }
+        .eq-active span:nth-child(4) { animation: eqBar 0.45s infinite ease-in-out 0.15s; }
+
+        /* 漂浮貼紙粒子 */
+        @keyframes stickerPopUp {
+            0% { transform: translateY(0) scale(0.5) rotate(-10deg); opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateY(-120px) scale(1.2) rotate(15deg); opacity: 0; }
+        }
+
+        .floating-sticker {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            animation: stickerPopUp 1.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* 蓋章牆貼紙彈入 */
+        @keyframes stampBounce {
+            0% { transform: translate(-50%, -50%) scale(1.6) rotate(var(--rot)); opacity: 0.5; }
+            60% { transform: translate(-50%, -50%) scale(0.92) rotate(var(--rot)); opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(var(--rot)); opacity: 1; }
+        }
+
+        .placed-stamp {
+            position: absolute;
+            pointer-events: auto;
+            cursor: grab;
+            touch-action: none;
+            user-select: none;
+            animation: stampBounce 0.28s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        .placed-stamp:active {
+            cursor: grabbing;
+        }
+
+        .placed-stamp.selected {
+            outline: 2px dashed #5D535E;
+            outline-offset: 3px;
+        }
+
+        .stamp-editor-range {
+            width: 100%;
+            accent-color: #E66C92;
+        }
+
+        /* 底部工作列滑桿 */
+        input[type="range"]#os-scroll-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 10px;
+            background: #FCFBF4;
+            border: 2px solid var(--os-line);
+            border-radius: 999px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]#os-scroll-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2.5 20.1 11l9.4 1.4-6.8 6.6 1.6 9.3-8.3-4.4-8.3 4.4 1.6-9.3-6.8-6.6L12 11z' fill='%23FFE885' stroke='%235D535E' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            cursor: grab;
+        }
+
+        input[type="range"]#os-scroll-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2.5 20.1 11l9.4 1.4-6.8 6.6 1.6 9.3-8.3-4.4-8.3 4.4 1.6-9.3-6.8-6.6L12 11z' fill='%23FFE885' stroke='%235D535E' stroke-width='3' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: 0;
+            cursor: grab;
+        }
+
+        .stamp-tool-selected {
+            background: #FFE885 !important;
+        }
+
+        .chat-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .chat-scroll::-webkit-scrollbar-thumb {
+            background: #B7D8F2;
+            border-radius: 999px;
+            border: 1px solid var(--os-line);
+        }
+
+        /* 5x5 踩地雷格子 */
+        .mine-cell {
+            width: 38px;
+            height: 38px;
+            border: 2px solid var(--os-line);
+            border-radius: 7px;
+            background: #E4F2FC;
+            font-size: 15px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: inset 1.5px 1.5px 0px #FFFFFF, inset -1.5px -1.5px 0px #9EC4E2;
+            transition: transform 0.1s ease;
+        }
+        .mine-cell:hover:not(.revealed) {
+            background: #D4EAFB;
+            transform: scale(1.04);
+        }
+        .mine-cell.revealed {
+            background: #FFFFFF;
+            box-shadow: none;
+            cursor: default;
+        }
+        .mine-cell.bomb-hit {
+            background: #FFD6E0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================================
+         頂部視窗標題列：HxW_1996 + 四大快捷導覽鈕
+    ========================================================== -->
+    <header class="fixed top-2.5 left-3 right-3 z-50 flex flex-wrap items-center justify-between gap-2 pointer-events-none">
+        <!-- 左上視窗標題：HxW_1996 -->
+        <div class="pointer-events-auto flex items-center gap-2 bg-[#FFFDF9]/95 border-2 border-[#5D535E] rounded-full px-3.5 py-1.5 shadow-[3px_3px_0px_rgba(93,83,94,0.28)]">
+            <span class="text-base">🐯🍚</span>
+            <span class="font-pixel text-sm sm:text-base font-black tracking-wide text-[#3E363F]">HxW_1996</span>
+            <span class="hidden md:inline-block text-[11px] font-bold bg-[#FADCE6] border border-[#5D535E] rounded-full px-2 py-0.5 text-[#3E363F]">호우 豪雨</span>
+        </div>
+
+        <!-- 右上快捷導覽鈕：1.HxW介紹｜2.成員介紹｜3.專輯播放｜4.互動遊戲 -->
+        <nav id="top-navigation" class="pointer-events-auto absolute left-1/2 top-0 -translate-x-1/2 flex items-center bg-[#FFFDF9]/95 border-2 border-[#5D535E] rounded-full px-2 py-1 shadow-[3px_3px_0px_rgba(93,83,94,0.28)] text-xs sm:text-sm font-bold text-[#3E363F] overflow-x-auto max-w-full">
+            <button onclick="jumpToSection(0)" class="nav-pill px-2.5 py-1 rounded-full hover:bg-[#E4F2FC] transition whitespace-nowrap" data-idx="0">1.HxW介紹</button>
+            <span class="text-[#5D535E]/40 px-0.5">｜</span>
+            <button onclick="jumpToSection(1320)" class="nav-pill px-2.5 py-1 rounded-full hover:bg-[#E4F2FC] transition whitespace-nowrap" data-idx="1">2.成員介紹</button>
+            <span class="text-[#5D535E]/40 px-0.5">｜</span>
+            <button onclick="jumpToSection(2820)" class="nav-pill px-2.5 py-1 rounded-full hover:bg-[#E4F2FC] transition whitespace-nowrap" data-idx="2">3.專輯播放</button>
+            <span class="text-[#5D535E]/40 px-0.5">｜</span>
+            <button onclick="jumpToSection(4320)" class="nav-pill px-2.5 py-1 rounded-full hover:bg-[#E4F2FC] transition whitespace-nowrap" data-idx="3">4.互動遊戲</button>
+        </nav>
+    </header>
+
+    <!-- =========================================================
+         主橫向桌面視口 (三層手繪視差背景 + 四大主題區塊)
+    ========================================================== -->
+    <main id="viewport">
+        <div id="layer-far" class="parallax-layer"></div>
+        <div class="rainbow-drift" aria-hidden="true"></div>
+        <div id="layer-midground" class="parallax-layer">
+            <div class="sky-float" style="left: 140px; top: 135px; --sky-size: 76px; --sky-duration: 7.2s; animation-delay: -1s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 490px; top: 410px; --sky-size: 66px; --sky-duration: 8.6s; animation-delay: -3.2s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 850px; top: 215px; --sky-size: 88px; --sky-duration: 9s; animation-delay: -2s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 1220px; top: 520px; --sky-size: 72px; --sky-duration: 7.8s; animation-delay: -4s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 1600px; top: 125px; --sky-size: 68px; --sky-duration: 8.2s; animation-delay: -0.5s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 1960px; top: 385px; --sky-size: 92px; --sky-duration: 9.4s; animation-delay: -2.8s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 2320px; top: 205px; --sky-size: 72px; --sky-duration: 7.6s; animation-delay: -1.7s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 2700px; top: 505px; --sky-size: 80px; --sky-duration: 8.8s; animation-delay: -3.6s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 3070px; top: 155px; --sky-size: 64px; --sky-duration: 7.4s; animation-delay: -2.3s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 3440px; top: 400px; --sky-size: 90px; --sky-duration: 9.2s; animation-delay: -0.8s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 3810px; top: 245px; --sky-size: 74px; --sky-duration: 8s; animation-delay: -4.5s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 4190px; top: 535px; --sky-size: 68px; --sky-duration: 7.8s; animation-delay: -1.3s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 4570px; top: 125px; --sky-size: 82px; --sky-duration: 9.6s; animation-delay: -3.9s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 4930px; top: 365px; --sky-size: 70px; --sky-duration: 7.5s; animation-delay: -2.5s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 5310px; top: 200px; --sky-size: 92px; --sky-duration: 8.9s; animation-delay: -0.3s;"><img class="user-art-star-blue w-full h-full object-contain" alt="" /></div>
+            <div class="sky-float" style="left: 5700px; top: 510px; --sky-size: 74px; --sky-duration: 8.3s; animation-delay: -3.1s;"><img class="user-art-star-pink w-full h-full object-contain" alt="" /></div>
+        </div>
+
+        <!-- =========================================================
+             視差第 3 層：前景互動桌面世界 (四大完整主題區)
+        ========================================================== -->
+        <div id="layer-foreground" class="parallax-layer">
+            <!-- =====================================================
+                 【區塊 1】1. HxW介紹 (X: 25px ~ 1285px)
+            ====================================================== -->
+            <section class="absolute top-0 left-[25px] w-[1260px] h-full flex items-center pt-12 pb-24 px-4 sm:px-8 gap-6">
+                
+                <!-- 左側 5 個手繪桌面圖示：我的電腦、96LINE、BEAM、호랑해、우아해 -->
+                <div id="desktop-icons" class="grid grid-cols-1 gap-3 z-20 flex-shrink-0">
+                    <!-- 1. 我的電腦 -->
+                    <button onclick="openDesktopIconToast('pc', event)" class="group flex flex-col items-center gap-1 w-20 cursor-pointer focus:outline-none">
+                        <div class="w-12 h-12 bg-white/90 border-2 border-[#5D535E] rounded-xl flex items-center justify-center shadow-[2px_2px_0px_#5D535E] group-hover:scale-110 transition-transform">
+                            <svg width="30" height="30" viewBox="0 0 40 40">
+                                <rect x="6" y="6" width="28" height="21" rx="3" fill="#CFE7FA" stroke="#5D535E" stroke-width="2.2"/>
+                                <rect x="10" y="10" width="20" height="13" fill="#FFFDF9" stroke="#5D535E" stroke-width="1.5"/>
+                                <path d="M15 16 L18 19 L25 13" fill="none" stroke="#FF8C42" stroke-width="2.2" stroke-linecap="round"/>
+                                <rect x="15" y="27" width="10" height="4" fill="#E2E8F0" stroke="#5D535E" stroke-width="2"/>
+                                <rect x="10" y="31" width="20" height="3" rx="1.5" fill="#CBD5E1" stroke="#5D535E" stroke-width="1.8"/>
+                            </svg>
+                        </div>
+                        <span class="font-pixel text-[11px] font-bold bg-white/90 px-1.5 py-0.5 rounded border border-[#5D535E]/40 text-[#3E363F]">我的電腦</span>
+                    </button>
+
+                    <!-- 2. 96LINE -->
+                    <button onclick="openDesktopIconToast('line96', event)" class="group flex flex-col items-center gap-1 w-20 cursor-pointer focus:outline-none">
+                        <div class="w-12 h-12 bg-white/90 border-2 border-[#5D535E] rounded-xl flex items-center justify-center shadow-[2px_2px_0px_#5D535E] group-hover:scale-110 transition-transform">
+                            <svg width="30" height="30" viewBox="0 0 40 40">
+                                <path d="M5 12 L15 12 L18 15 L35 15 L35 32 L5 32 Z" fill="#FFE3CE" stroke="#5D535E" stroke-width="2.2" stroke-linejoin="round"/>
+                                <text x="20" y="26" text-anchor="middle" font-size="9" font-weight="900" fill="#3E363F">96</text>
+                            </svg>
+                        </div>
+                        <span class="font-pixel text-[11px] font-bold bg-white/90 px-1.5 py-0.5 rounded border border-[#5D535E]/40 text-[#3E363F]">96LINE</span>
+                    </button>
+
+                    <!-- 3. BEAM -->
+                    <button onclick="openDesktopIconToast('beamzip', event)" class="group flex flex-col items-center gap-1 w-20 cursor-pointer focus:outline-none">
+                        <div class="w-12 h-12 bg-white/90 border-2 border-[#5D535E] rounded-xl flex items-center justify-center shadow-[2px_2px_0px_#5D535E] group-hover:scale-110 transition-transform">
+                            <svg width="30" height="30" viewBox="0 0 40 40">
+                                <rect x="9" y="6" width="22" height="28" rx="3" fill="#FADCE6" stroke="#5D535E" stroke-width="2.2"/>
+                                <line x1="20" y1="6" x2="20" y2="34" stroke="#5D535E" stroke-width="2" stroke-dasharray="3 2"/>
+                                <rect x="16" y="15" width="8" height="6" rx="1.5" fill="#FFE885" stroke="#5D535E" stroke-width="1.6"/>
+                            </svg>
+                        </div>
+                        <span class="font-pixel text-[11px] font-bold bg-white/90 px-1.5 py-0.5 rounded border border-[#5D535E]/40 text-[#3E363F]">BEAM</span>
+                    </button>
+
+                    <!-- 4. 호랑해 (整合使用者親繪金髮 HOSHI 頭像) -->
+                    <button onclick="openDesktopIconToast('horanghae', event)" class="group flex flex-col items-center gap-1 w-20 cursor-pointer focus:outline-none">
+                        <div class="w-12 h-12 bg-[#FFF3E6] border-2 border-[#5D535E] rounded-xl flex items-center justify-center p-1 shadow-[2px_2px_0px_#5D535E] group-hover:scale-110 transition-transform overflow-hidden">
+                            <img class="user-art-hoshi-open w-full h-full object-contain" alt="호랑해" />
+                        </div>
+                        <span class="font-pixel text-[11px] font-bold bg-white/90 px-1.5 py-0.5 rounded border border-[#5D535E]/40 text-[#3E363F]">호랑해</span>
+                    </button>
+
+                    <!-- 5. 우아해 (整合使用者親繪粉髮 WOOZI 頭像) -->
+                    <button onclick="openDesktopIconToast('wooahae', event)" class="group flex flex-col items-center gap-1 w-20 cursor-pointer focus:outline-none">
+                        <div class="w-12 h-12 bg-[#FCEBF1] border-2 border-[#5D535E] rounded-xl flex items-center justify-center p-1 shadow-[2px_2px_0px_#5D535E] group-hover:scale-110 transition-transform overflow-hidden">
+                            <img class="user-art-woozi-open w-full h-full object-contain" alt="우아해" />
+                        </div>
+                        <span class="font-pixel text-[11px] font-bold bg-white/90 px-1.5 py-0.5 rounded border border-[#5D535E]/40 text-[#3E363F]">우아해</span>
+                    </button>
+                </div>
+
+                <!-- 中央主視窗：視窗標題「HxW介紹」 -->
+                <div class="y2k-window max-w-lg w-full bg-[#FFFDF9] z-20">
+                    <div class="y2k-titlebar">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm">🐯🍚</span>
+                            <span class="font-pixel text-xs sm:text-sm font-bold text-[#3E363F]">HxW介紹</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn">□</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 sm:p-6">
+                        <!-- 副標標籤：1996 -->
+                        <div id="hero-subtitle" class="font-pixel inline-flex items-center gap-2.5 bg-[#FFE885] border-2 border-[#5D535E] rounded-full px-3.5 py-1 text-xs font-black text-[#3E363F] mb-3 shadow-[1.5px_1.5px_0px_#5D535E]">
+                            <span>★</span>
+                            <span>1996</span>
+                        </div>
+
+                        <!-- 主標題：認識HOSHI × WOOZI -->
+                        <h1 id="hero-title" class="font-pixel text-3xl sm:text-4xl text-[#3E363F] mb-3">
+                            認識<span class="hero-title-name text-[#FF8C42]">HOSHI</span><span class="hero-title-separator">×</span><span class="hero-title-name text-[#E66C92]">WOOZI</span>
+                        </h1>
+
+                        <!-- 介紹內文 -->
+                        <div class="bg-[#F4F9FD] border-2 border-[#5D535E] rounded-xl p-4 mb-4 text-sm sm:text-base font-bold text-[#3E363F] leading-relaxed">
+                            「權順榮 (HOSHI)」與「李知勳 (WOOZI)」組成的小分隊！兩人組合為「豪雨 (호우)」。
+                        </div>
+
+                        <!-- 特色標籤 -->
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="bg-[#FFF0E2] border-2 border-[#5D535E] rounded-full px-3 py-1 text-xs font-black text-[#3E363F] shadow-[1.5px_1.5px_0px_#5D535E]">
+                                호랑해 X 우아해
+                            </span>
+                            <span class="bg-[#E4F2FC] border-2 border-[#5D535E] rounded-full px-3 py-1 text-xs font-black text-[#3E363F] shadow-[1.5px_1.5px_0px_#5D535E]">
+                                1996
+                            </span>
+                            <span class="bg-[#FADCE6] border-2 border-[#5D535E] rounded-full px-3 py-1 text-xs font-black text-[#3E363F] shadow-[1.5px_1.5px_0px_#5D535E]">
+                                專輯《BEAM》
+                            </span>
+                        </div>
+
+                        <!-- 桌面圖示點擊小提示框 -->
+                        <div id="desktop-icon-toast" class="mt-4 bg-[#FFFDF4] border border-dashed border-[#5D535E] rounded-lg px-3 py-2 text-xs text-[#5D535E]">
+                            💡 點擊左側桌面圖示（我的電腦、96LINE、BEAM、호랑해、우아해）可查看隱藏小檔案！
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 右側懸掛壓克力雙人吊飾互動區 (整合使用者親繪「충성」貝雷帽雙人組插畫) -->
+                <div class="flex flex-col items-center z-20 flex-shrink-0">
+                    <div class="w-4 h-4 rounded-full bg-white border-2 border-[#5D535E] shadow-xs"></div>
+                    <div id="hxw-charm" onclick="swingCharm(event)" class="charm-pendulum flex flex-col items-center" title="點我搖晃吊飾！">
+                        <div class="w-1.5 h-1.5 rounded-full bg-[#5D535E] my-0.5"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-[#5D535E] my-0.5"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-[#5D535E] my-0.5"></div>
+                        <!-- 壓克力透明保護殼造型雙人吊飾 -->
+                        <div class="bg-white/95 border-[2.5px] border-[#5D535E] rounded-3xl p-2.5 shadow-[4px_4px_0px_rgba(93,83,94,0.28)] relative flex flex-col items-center">
+                            <span class="absolute -top-2 -right-2 bg-[#FFE885] border border-[#5D535E] rounded-full px-1.5 text-[10px] font-black">96</span>
+                            <img class="user-art-salute-duo w-56 h-56 object-contain" alt="충성 貝雷帽雙人組吊飾" />
+                            <div class="flex items-center gap-2 text-[11px] font-black mt-0.5">
+                                <span class="text-[#FF8C42]">🐯 HOSHI</span>
+                                <span class="text-[#5D535E]">×</span>
+                                <span class="text-[#E66C92]">🍚 WOOZI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 吊飾互動提示文字 -->
+                    <button onclick="jumpToSection(1320)" class="mt-3 bg-white/95 border-2 border-[#5D535E] rounded-full px-3.5 py-1 text-xs font-bold text-[#3E363F] shadow-[2px_2px_0px_#5D535E] hover:bg-[#FFE885] transition cursor-pointer">
+                        （點擊會輕輕搖晃！向右滑動認識兩位成員 →）
+                    </button>
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 【區塊 2】2. 成員檔案＆聊天室 (X: 1290px ~ 2780px)
+            ====================================================== -->
+            <section class="absolute top-0 left-[1290px] w-[1490px] h-full flex items-center pt-12 pb-24 px-6 gap-6">
+                
+                <!-- 卡片 1：權順榮 (HOSHI) 介紹卡 (整合使用者親繪 HOSHI 插畫) -->
+                <div class="y2k-window w-[285px] bg-white flex-shrink-0">
+                    <div class="y2k-titlebar">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-xs">🐯</span>
+                            <span class="font-pixel text-xs font-bold text-[#3E363F]">權順榮 (HOSHI) 介紹卡</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-[#FFFDFB]">
+                        <div onclick="spawnSticker(event.clientX, event.clientY - 20, '🐯')" class="pink-checkerboard border-2 border-[#5D535E] rounded-xl h-[142px] flex items-center justify-center relative mb-3 cursor-pointer group overflow-hidden">
+                            <span class="absolute top-2 left-2 bg-white border border-[#5D535E] rounded-full px-2 py-0.5 text-[10px] font-black text-[#FF8C42] z-10">10:10</span>
+                            <img class="user-art-hoshi-open w-32 h-32 object-contain group-hover:scale-105 transition-transform" alt="權順榮 HOSHI 插畫" />
+                        </div>
+
+                        <div class="space-y-1.5 text-xs">
+                            <div class="bg-[#FFF6ED] border border-[#5D535E]/40 rounded-lg px-2.5 py-1.5">
+                                <span class="font-bold text-[#FF8C42]">姓名：</span>
+                                <span class="font-black text-[#3E363F]">HOSHI · 권순영</span>
+                            </div>
+                            <div class="bg-[#FFF6ED] border border-[#5D535E]/40 rounded-lg px-2.5 py-1.5">
+                                <span class="font-bold text-[#FF8C42]">生日：</span>
+                                <span class="font-bold text-[#3E363F]">1996.06.15</span>
+                            </div>
+                            <div class="bg-[#FFF6ED] border border-[#5D535E]/40 rounded-lg px-2.5 py-1.5">
+                                <span class="font-bold text-[#FF8C42]">關鍵字：</span>
+                                <span class="font-black text-[#3E363F]">호랑해</span>
+                            </div>
+                            <div class="bg-[#FFE8D6] border-2 border-[#5D535E] rounded-lg px-2.5 py-2 text-center font-black text-[#3E363F]">
+                                簡介：「我是老虎！不是倉鼠！」
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片 2：李知勳 (WOOZI) 介紹卡 (整合使用者親繪 WOOZI 插畫) -->
+                <div class="y2k-window w-[285px] bg-white flex-shrink-0">
+                    <div class="y2k-titlebar pink-bar">
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-xs">🍚</span>
+                            <span class="font-pixel text-xs font-bold text-[#3E363F]">李知勳 (WOOZI) 介紹卡</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-[#FFFDFB]">
+                        <div onclick="spawnSticker(event.clientX, event.clientY - 20, '🍚')" class="blue-checkerboard border-2 border-[#5D535E] rounded-xl h-[142px] flex items-center justify-center relative mb-3 cursor-pointer group overflow-hidden">
+                            <span class="absolute top-2 left-2 bg-white border border-[#5D535E] rounded-full px-2 py-0.5 text-[10px] font-black text-[#E66C92] z-10">VOBO</span>
+                            <img class="user-art-woozi-open w-32 h-32 object-contain group-hover:scale-105 transition-transform" alt="李知勳 WOOZI 插畫" />
+                        </div>
+
+                        <div class="space-y-1.5 text-xs">
+                            <div class="bg-[#FDF0F5] border border-[#5D535E]/40 rounded-lg px-2.5 py-1.5">
+                                <span class="font-bold text-[#E66C92]">姓名：</span>
+                                <span class="font-black text-[#3E363F]">WOOZI · 이지훈</span>
+                            </div>
+                            <div class="bg-[#FDF0F5] border border-[#5D535E]/40 rounded-lg px-2.5 py-1.5">
+                                <span class="font-bold text-[#E66C92]">生日：</span>
+                                <span class="font-bold text-[#3E363F]">1996.11.22</span>
+                            </div>
+                            <div class="bg-[#FDF0F5] border border-[#5D535E]/40 rounded-lg px-2.5 py-1.5">
+                                <span class="font-bold text-[#E66C92]">關鍵字：</span>
+                                <span class="font-black text-[#3E363F]">宇宙工廠</span>
+                            </div>
+                            <div class="bg-[#FADCE6] border-2 border-[#5D535E] rounded-lg px-2.5 py-2 text-center font-black text-[#3E363F]">
+                                簡介：우아해
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 96Line 應援聊天室視窗 (整合使用者親繪「충성」雙人貼圖) -->
+                <div class="y2k-window w-[460px] bg-white flex flex-col flex-shrink-0">
+                    <div class="y2k-titlebar">
+                        <div class="flex items-center gap-2">
+                            <span class="font-pixel text-xs sm:text-sm font-bold text-[#3E363F]">💬 96Line 聊天室</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn">□</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+
+                    <!-- 聊天記錄視窗 -->
+                    <div id="qq-chat-log" class="chat-scroll h-[265px] p-3.5 overflow-y-auto space-y-3 bg-[#FFFDFB] text-xs">
+                        <div class="flex flex-col items-end">
+                            <div class="font-bold text-[#5B8DB8] mb-0.5">💎 CARAT</div>
+                            <div class="inline-block bg-[#E4F2FC] border-2 border-[#5D535E] rounded-2xl rounded-tr-none px-3.5 py-2 text-[#3E363F] font-bold">🍚 우아해！</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-[#E66C92] mb-0.5">🍚 李知勳 (WOOZI)</div>
+                            <div class="inline-block bg-[#FCEBF1] border-2 border-[#5D535E] rounded-2xl rounded-tl-none px-3.5 py-2 text-[#3E363F] font-bold shadow-[2px_2px_0px_rgba(93,83,94,0.15)]">謝謝你們喜歡《BEAM》，記得按時吃飯喔！ 우아해 🍚✨</div>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <div class="font-bold text-[#5B8DB8] mb-0.5">💎 CARAT 克拉</div>
+                            <div class="inline-block bg-[#E4F2FC] border-2 border-[#5D535E] rounded-2xl rounded-tr-none px-3.5 py-2 text-[#3E363F] font-bold">🐯 호랑해！！</div>
+                        </div>
+                        <div>
+                            <div class="font-bold text-[#FF8C42] mb-0.5">🐯 權順榮 (HOSHI)</div>
+                            <div class="inline-block bg-[#FFF2E6] border-2 border-[#5D535E] rounded-2xl rounded-tl-none px-3.5 py-2 text-[#3E363F] font-bold shadow-[2px_2px_0px_rgba(93,83,94,0.15)]">哇啊~ 호랑해~🐯🧡</div>
+                        </div>
+
+                        <!-- 충성 訊息 -->
+                        <div class="flex flex-col items-start">
+                            <div class="font-bold text-[#5D535E] mb-0.5">💎 CARAT 克拉</div>
+                            <div class="inline-block bg-[#FFE885] border-2 border-[#5D535E] rounded-2xl rounded-tl-none px-3.5 py-2 text-[#3E363F] font-black shadow-[2px_2px_0px_rgba(93,83,94,0.15)]">
+                                🫡 충성
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 快捷發送鈕：🐯 호랑해、🍚 우아해、🫡 충성 -->
+                    <div class="bg-[#E4F2FC] border-t-2 border-[#5D535E] p-2.5 flex flex-wrap items-center justify-between gap-1.5">
+                        <button onclick="sendChatPreset('horanghae')" class="y2k-btn flex-1 py-1.5 px-2 text-xs font-black text-[#3E363F] !bg-[#FFF0E2] whitespace-nowrap">
+                            🐯 호랑해
+                        </button>
+                        <button onclick="sendChatPreset('wooahae')" class="y2k-btn flex-1 py-1.5 px-2 text-xs font-black text-[#3E363F] !bg-[#FCE6EE] whitespace-nowrap">
+                            🍚 우아해
+                        </button>
+                        <button onclick="sendChatPreset('salute')" class="y2k-btn flex-1 py-1.5 px-2 text-xs font-black text-[#3E363F] !bg-[#FFE885] whitespace-nowrap">
+                            🫡 충성
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 【區塊 3】3. 專輯播放 (連結 Spotify 真實播放) (X: 2790px ~ 4270px)
+            ====================================================== -->
+            <section class="absolute top-0 left-[2790px] w-[1480px] h-full flex items-center pt-12 pb-24 px-6 gap-6">
+                
+                <!-- 專輯一 & 專輯二曲目播放視窗 -->
+                <div class="y2k-window w-[650px] bg-white flex-shrink-0">
+                    <div class="y2k-titlebar">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs">💿</span>
+                            <span class="font-pixel text-xs sm:text-sm font-bold text-[#3E363F]">3. 專輯播放 — HxW_Music_Player.exe</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn">□</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-[#FFFDFB]">
+                        <!-- 頂部正在播放狀態條 + 旋轉光碟 -->
+                        <div class="flex items-center justify-between bg-[#F4F9FD] border-2 border-[#5D535E] rounded-xl px-3.5 py-2 mb-3">
+                            <div class="flex items-center gap-3">
+                                <div id="cd-disc-visual" class="w-11 h-11 flex-shrink-0 disc-spinning">
+                                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                                        <circle cx="50" cy="50" r="46" fill="url(#discRainbow)" stroke="#5D535E" stroke-width="4"/>
+                                        <circle cx="50" cy="50" r="16" fill="#FFFFFF" stroke="#5D535E" stroke-width="3"/>
+                                        <circle cx="50" cy="50" r="5" fill="#5D535E"/>
+                                        <defs>
+                                            <linearGradient id="discRainbow" x1="0" y1="0" x2="1" y2="1">
+                                                <stop offset="0%" stop-color="#FFD3B5"/>
+                                                <stop offset="50%" stop-color="#FADCE6"/>
+                                                <stop offset="100%" stop-color="#B7D8F2"/>
+                                            </linearGradient>
+                                        </defs>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="text-[10px] font-pixel font-bold text-[#FF8C42]">NOW SELECTED TRACK</div>
+                                    <div id="now-playing-title" class="text-sm font-black text-[#3E363F]">1. 동갑내기 (96ers)（主打歌）</div>
+                                </div>
+                            </div>
+
+                            <!-- 跳動音波與 Spotify 直接開啟按鈕 -->
+                            <div class="flex items-center gap-2.5">
+                                <div id="eq-bars" class="eq-active flex items-end gap-0.5 h-4">
+                                    <span class="w-1 bg-[#FF8C42] rounded-full"></span>
+                                    <span class="w-1 bg-[#E66C92] rounded-full"></span>
+                                    <span class="w-1 bg-[#5B8DB8] rounded-full"></span>
+                                    <span class="w-1 bg-[#1DB954] rounded-full"></span>
+                                </div>
+                                <a id="now-playing-spotify-link" href="https://open.spotify.com/search/HOSHI%20WOOZI%20%EB%8F%99%EA%B0%91%EB%82%B4%EA%B8%B0" target="_blank" rel="noopener noreferrer" class="y2k-btn !bg-[#1DB954] text-white px-2.5 py-1 text-xs font-black flex items-center gap-1">
+                                    <span>🎧 Spotify 播放</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 雙專輯並排清單 -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            
+                            <!-- 【專輯一】1ST SINGLE ALBUM 《BEAM》 -->
+                            <div class="bg-[#FFF9FB] border-2 border-[#5D535E] rounded-xl p-3">
+                                <span class="inline-block bg-[#FADCE6] border border-[#5D535E] rounded px-2 py-0.5 font-pixel text-[10px] font-black text-[#3E363F]">
+                                    1ST SINGLE ALBUM
+                                </span>
+                                <h3 class="text-base font-black text-[#3E363F] mt-1">《BEAM》</h3>
+                                <p class="text-[11px] text-[#5D535E] font-bold mt-0.5 mb-2.5">
+                                    發行於 2025 年 3 月 10 日，專輯名稱「BEAM」。
+                                </p>
+
+                                <div class="space-y-1.5 text-xs">
+                                    <div onclick="selectTrack(0)" class="track-row bg-[#FFE8D6] border border-[#5D535E] rounded-lg px-2 py-1.5 flex items-center justify-between gap-1 cursor-pointer hover:brightness-95 transition">
+                                        <span class="font-bold text-[#3E363F] truncate">1. 동갑내기 (96ers)（主打歌）</span>
+                                        <a href="https://open.spotify.com/search/HOSHI%20WOOZI%20%EB%8F%99%EA%B0%91%EB%82%B4%EA%B8%B0" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-1.5 py-0.5 bg-[#1DB954] text-white rounded text-[10px] font-black flex-shrink-0">▶ Spotify</a>
+                                    </div>
+                                    <div onclick="selectTrack(1)" class="track-row bg-white border border-[#5D535E]/50 rounded-lg px-2 py-1.5 flex items-center justify-between gap-1 cursor-pointer hover:bg-[#FFF0F5] transition">
+                                        <span class="font-bold text-[#3E363F] truncate">2. PINOCCHIO (feat. So!YoON!)（收錄曲）</span>
+                                        <a href="https://open.spotify.com/search/HOSHI%20WOOZI%20PINOCCHIO" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-1.5 py-0.5 bg-[#1DB954] text-white rounded text-[10px] font-black flex-shrink-0">▶ Spotify</a>
+                                    </div>
+                                    <div onclick="selectTrack(2)" class="track-row bg-white border border-[#5D535E]/50 rounded-lg px-2 py-1.5 flex items-center justify-between gap-1 cursor-pointer hover:bg-[#FFF0F5] transition">
+                                        <span class="font-bold text-[#3E363F] truncate">3. STUPID IDIOT（收錄曲）</span>
+                                        <a href="https://open.spotify.com/search/HOSHI%20WOOZI%20STUPID%20IDIOT" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-1.5 py-0.5 bg-[#1DB954] text-white rounded text-[10px] font-black flex-shrink-0">▶ Spotify</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 【專輯二】2ND ALBUM 《TEEN, AGE》 -->
+                            <div class="bg-[#F4F9FD] border-2 border-[#5D535E] rounded-xl p-3 flex flex-col justify-between">
+                                <div>
+                                    <span class="inline-block bg-[#CFE7FA] border border-[#5D535E] rounded px-2 py-0.5 font-pixel text-[10px] font-black text-[#3E363F]">
+                                        2ND ALBUM
+                                    </span>
+                                    <h3 class="text-base font-black text-[#3E363F] mt-1">《TEEN, AGE》</h3>
+                                    <p class="text-[11px] text-[#5D535E] font-bold mt-0.5 mb-2.5">
+                                        發行於 2017 年 11 月 6 日，收錄經典合作曲之正規專輯。
+                                    </p>
+
+                                    <div class="space-y-1.5 text-xs">
+                                        <div onclick="selectTrack(3)" class="track-row bg-white border border-[#5D535E]/50 rounded-lg px-2 py-1.5 flex items-center justify-between gap-1 cursor-pointer hover:bg-[#E4F2FC] transition">
+                                            <span class="font-bold text-[#3E363F] truncate">1. 날 쏘고 가라 (Bring It)（收錄曲）</span>
+                                            <a href="https://open.spotify.com/search/SEVENTEEN%20%EB%82%A0%20%EC%8F%98%EA%B3%A0%20%EA%B0%80%EB%9D%BC%20Bring%20It" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="px-1.5 py-0.5 bg-[#1DB954] text-white rounded text-[10px] font-black flex-shrink-0">▶ Spotify</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 站內即時試聽音效小切換鈕 -->
+                                <div class="mt-3 pt-2 border-t border-dashed border-[#5D535E]/40 flex items-center justify-between">
+                                    <span class="text-[11px] font-bold text-[#5D535E]">🎵 8-Bit 音樂盒旋律試聽：</span>
+                                    <button id="btn-synth-toggle" onclick="toggleChiptunePreview()" class="y2k-btn px-2.5 py-1 text-[11px] font-black !bg-[#FFE885] text-[#3E363F]">
+                                        ▶ 播放旋律
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="y2k-window h-[460px] w-[320px] flex flex-shrink-0 flex-col bg-white">
+                    <div class="y2k-titlebar pink-bar">
+                        <div class="flex items-center gap-2">
+                            <span class="font-pixel text-xs sm:text-sm font-bold text-[#3E363F]">🎬 MOVIE.mp4</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn">□</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+                    <div class="flex min-h-0 flex-1 items-center justify-center bg-[#FFFDFB] p-3">
+                    <video width="404" height="720" class="h-auto max-h-full w-auto max-w-full rounded-lg border-2 border-[#5D535E] bg-black object-contain" controls playsinline preload="metadata" muted>
+                            <source src="MOVIE.mp4" type="video/mp4">
+                            您的瀏覽器不支援影片播放。
+                    </video>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <!-- =====================================================
+                 【區塊 4】4. 互動小遊戲 (整合使用者 PNG 貼紙 & 5×5 踩地雷)
+            ====================================================== -->
+            <section class="absolute top-0 left-[4290px] w-[1780px] h-full flex items-center pt-12 pb-24 px-6 gap-6">
+                
+                <!-- 遊戲 A：電子雞 -->
+                <div class="y2k-window w-[420px] h-[460px] bg-white flex flex-col flex-shrink-0">
+                    <div class="y2k-titlebar mint-bar">
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-pixel text-xs sm:text-sm font-bold text-[#3E363F]">☕ LATTE小屋</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn">□</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+                    <div class="p-3 flex flex-1 flex-col bg-[#FFFDFB]">
+                        <div class="pink-checkerboard border-2 border-[#5D535E] rounded-xl h-[178px] flex items-center justify-center relative overflow-hidden">
+                            <img id="tamagotchi-sprite" class="w-36 h-36 object-contain drop-shadow-[2px_3px_0px_rgba(93,83,94,0.2)]" alt="BIRD 電子雞寵物" />
+                            <span id="pet-poop" class="absolute right-3 top-3 text-2xl" aria-label="需要清理的便便">💩</span>
+                            <span id="pet-mood" class="absolute bottom-2 bg-white/90 border border-[#5D535E] rounded-full px-2.5 py-0.5 text-[10px] font-bold">好開心！</span>
+                        </div>
+                        <div class="mt-3 space-y-2 text-[11px] font-bold text-[#3E363F]">
+                            <div>
+                                <div class="flex justify-between mb-0.5"><span>🍎 飽足感</span><span id="pet-hunger-value">70%</span></div>
+                                <div class="h-2.5 bg-white border border-[#5D535E] rounded-full overflow-hidden">
+                                    <div id="pet-hunger-bar" class="h-full bg-[#BDE6C5] transition-all duration-300" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-0.5"><span>💖 親密度</span><span id="pet-love-value">70%</span></div>
+                                <div class="h-2.5 bg-white border border-[#5D535E] rounded-full overflow-hidden">
+                                    <div id="pet-love-bar" class="h-full bg-[#F7C2D5] transition-all duration-300" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="latte-controls" class="mt-auto flex gap-2 pt-3">
+                            <button onclick="feedPet()" class="y2k-btn flex-1 px-1 py-1.5 text-[10px] font-black !bg-[#FFE885]">🍎 餵點心</button>
+                            <button onclick="petBird()" class="y2k-btn flex-1 px-1 py-1.5 text-[10px] font-black !bg-[#FADCE6]">💖 摸摸</button>
+                            <button onclick="cleanPetPoop()" class="y2k-btn flex-1 px-1 py-1.5 text-[10px] font-black !bg-[#DFF5E3]">🧹 清大便</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 遊戲 B：🎨 HxW 手繪貼紙蓋章牆 -->
+                <div class="y2k-window w-[420px] h-[460px] bg-white flex flex-col flex-shrink-0">
+                    <div class="y2k-titlebar pink-bar">
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-pixel text-xs sm:text-sm font-bold text-[#3E363F]">🎨 HxW 手繪貼紙蓋章牆</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn">□</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3 flex-1 bg-[#FFFDFB]">
+                        <!-- 12 張 PNG 素材均可選作貼紙 -->
+                        <div class="flex flex-wrap items-center justify-between gap-1.5 mb-3">
+                            <div id="stamp-tools" class="grid w-full grid-cols-5 gap-1.5"></div>
+                            <button onclick="clearStampWall()" class="y2k-btn ml-auto px-2.5 py-1 text-xs font-black !bg-[#FADCE6] text-[#3E363F]">
+                                清空貼紙
+                            </button>
+                        </div>
+
+                        <div class="mb-3 grid grid-cols-2 gap-2 rounded-lg border border-[#5D535E]/40 bg-[#F4F9FD] p-2 text-[10px] font-bold text-[#3E363F]">
+                            <label class="flex flex-col gap-1">
+                                <span class="flex justify-between">貼紙大小 <span id="stamp-size-value">64 px</span></span>
+                                <input id="stamp-size" class="stamp-editor-range" type="range" min="32" max="160" value="64" oninput="updateSelectedStamp()" disabled />
+                            </label>
+                            <label class="flex flex-col gap-1">
+                                <span class="flex justify-between">旋轉角度 <span id="stamp-angle-value">0°</span></span>
+                                <input id="stamp-angle" class="stamp-editor-range" type="range" min="-180" max="180" value="0" oninput="updateSelectedStamp()" disabled />
+                            </label>
+                            <div class="col-span-2 flex items-center justify-between gap-2">
+                                <span id="stamp-selection-label">點選貼紙選取，再拖曳移動或調整大小角度</span>
+                                <button id="delete-selected-stamp" onclick="deleteSelectedStamp()" class="y2k-btn px-2 py-0.5 text-[10px] font-black !bg-[#FADCE6]" disabled>刪除選取</button>
+                            </div>
+                        </div>
+
+                        <!-- 互動手繪蓋章畫布 -->
+                        <div id="stamp-canvas-wall" onclick="placeStampOnWall(event)" class="pink-checkerboard relative w-full h-[160px] border-2 border-[#5D535E] rounded-xl overflow-hidden cursor-crosshair flex items-center justify-center">
+                            <span id="stamp-canvas-hint" class="bg-white/90 border border-[#5D535E] rounded-full px-3.5 py-1.5 text-xs font-bold text-[#5D535E] pointer-events-none shadow-xs">
+                                點選上方印章，在畫布任意處蓋出專屬應援牆！
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 遊戲 B：💣 5×5 踩地雷 -->
+                <div class="y2k-window w-[420px] h-[460px] bg-white flex flex-col flex-shrink-0">
+                    <div class="y2k-titlebar">
+                        <div class="flex items-center gap-1.5">
+                            <span class="font-pixel text-xs sm:text-sm font-bold text-[#3E363F]">💣 5×5 踩地雷</span>
+                        </div>
+                        <div class="y2k-win-btns">
+                            <span class="y2k-win-btn">_</span>
+                            <span class="y2k-win-btn close-btn">×</span>
+                        </div>
+                    </div>
+
+                    <div class="p-4 flex-1 bg-[#FFFDFB] flex flex-col items-center">
+                        <!-- 遊戲說明 + 重新開始按鈕 -->
+                        <div class="w-full flex items-center justify-between gap-2 mb-2.5">
+                            <span class="text-xs font-bold text-[#3E363F]">避開隱藏的 4 顆小炸彈，找出所有鑽石！</span>
+                            <button onclick="initMinesweeper()" class="y2k-btn px-2.5 py-1 text-xs font-black !bg-[#E4F2FC] text-[#3E363F] whitespace-nowrap">
+                                重新開始
+                            </button>
+                        </div>
+
+                        <!-- 5x5 踩地雷網格 -->
+                        <div id="minesweeper-grid" class="mt-auto grid grid-cols-5 gap-1.5 p-2.5 bg-[#D5E9F7] border-2 border-[#5D535E] rounded-xl"></div>
+
+                        <!-- 動態狀態訊息橫幅 -->
+                        <div id="mine-status" class="mt-auto w-full bg-[#FFF9D6] border-2 border-[#5D535E] rounded-lg px-3 py-1.5 text-center text-xs font-black text-[#3E363F]">
+                            安全過關！繼續尋找鑽石 💎
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </div>
+    </main>
+
+    <!-- =========================================================
+         固定於桌面地平線上的 Q 版可動雙人主角 (整合使用者親繪眨眼雙幀圖)
+    ========================================================== -->
+    <div id="player-stage" class="facing-right">
+        <!-- Q 版 權順榮 (HOSHI) — PLAYER1_PNG (瞇眼) & PLAYER2_PNG (睜眼) -->
+        <div onclick="speakCharacterLine('hoshi')" class="chibi-clickable" title="點我聽權順榮說話！">
+            <div id="bubble-hoshi" class="speech-bubble hidden">호랑해～🐯</div>
+            <div class="chibi-flip">
+                <div class="chibi-body-anim w-[112px] h-[112px] flex items-end justify-center">
+                    <img id="sprite-hoshi" class="w-full h-full object-contain drop-shadow-[2px_3px_0px_rgba(93,83,94,0.22)]" alt="Q版權順榮 HOSHI" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Q 版 李知勳 (WOOZI) — PIG1_PNG (瞇眼) & PIG2_PNG (睜眼) -->
+        <div onclick="speakCharacterLine('woozi')" class="chibi-clickable -ml-4" title="點我聽李知勳說話！">
+            <div id="bubble-woozi" class="speech-bubble hidden">우아해 🍚</div>
+            <div class="chibi-flip">
+                <div class="chibi-body-anim w-[106px] h-[106px] flex items-end justify-center">
+                    <img id="sprite-woozi" class="w-full h-full object-contain drop-shadow-[2px_3px_0px_rgba(93,83,94,0.22)]" alt="Q版李知勳 WOOZI" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="race-track" aria-hidden="true"><span id="race-obstacle"></span></div>
+    <div id="race-controls">
+        <span id="race-status">障礙賽：按開始</span>
+        <button id="race-start" class="y2k-btn px-2 py-1 text-[10px] font-black !bg-[#FFE885]" onclick="startObstacleRace()">開始</button>
+    </div>
+
+    <!-- =========================================================
+         底部復古「開始」工作列
+    ========================================================== -->
+    <footer class="fixed bottom-0 left-0 right-0 h-[44px] z-50 bg-gradient-to-b from-[#D4ECFA] to-[#B4D7F2] border-t-[2.5px] border-[#5D535E] px-2 sm:px-3 flex items-center justify-between gap-2">
+        
+        <!-- 左側：「開始」按鈕 + 左右方向鍵 -->
+        <div class="flex items-center gap-1.5 relative">
+            <button onclick="toggleStartMenu()" class="h-[32px] px-3 bg-gradient-to-b from-[#DFF5E3] to-[#BDE6C5] border-2 border-[#5D535E] rounded-full shadow-[2px_2px_0px_#5D535E] flex items-center gap-1.5 font-pixel text-xs font-black text-[#3E363F] cursor-pointer active:translate-y-0.5">
+                <span class="text-sm">🍀</span>
+                <span>開始</span>
+            </button>
+
+            <button id="btn-move-left" class="w-8 h-8 bg-white border-2 border-[#5D535E] rounded-lg font-black text-xs flex items-center justify-center shadow-[1.5px_1.5px_0px_#5D535E] active:translate-y-0.5" aria-label="向左走">←</button>
+            <button id="btn-move-right" class="w-8 h-8 bg-[#FFE885] border-2 border-[#5D535E] rounded-lg font-black text-xs flex items-center justify-center shadow-[1.5px_1.5px_0px_#5D535E] active:translate-y-0.5" aria-label="向右走">→</button>
+
+            <!-- 「開始」彈出選單 -->
+            <div id="start-menu-popup" class="hidden absolute bottom-11 left-0 w-52 y2k-window bg-white p-2 space-y-1 text-xs font-bold">
+                <div class="font-pixel text-[10px] text-[#5D535E] px-2 py-1 border-b border-dashed border-[#5D535E]/40">HxW_1996 快捷選單</div>
+                <button onclick="jumpToSection(0); toggleStartMenu();" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-[#E4F2FC]">1. HxW介紹</button>
+                <button onclick="jumpToSection(1320); toggleStartMenu();" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-[#E4F2FC]">2. 成員介紹＆聊天室</button>
+                <button onclick="jumpToSection(2820); toggleStartMenu();" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-[#E4F2FC]">3. 專輯播放 (Spotify)</button>
+                <button onclick="jumpToSection(4320); toggleStartMenu();" class="w-full text-left px-2.5 py-1.5 rounded hover:bg-[#E4F2FC]">4. 互動小遊戲</button>
+            </div>
+        </div>
+
+        <!-- 中間：復古網址列進度條 -->
+        <div class="flex-1 max-w-xl h-[32px] bg-[#FFFDF9] border-2 border-[#5D535E] rounded-lg px-2.5 flex items-center gap-2 shadow-inner">
+            <span class="hidden md:inline font-pixel text-[11px] text-[#5D535E] whitespace-nowrap">http://www.hxw1996.carat/</span>
+            <input type="range" id="os-scroll-slider" min="0" max="4850" value="0" step="1">
+            <span id="distance-label" class="font-pixel text-xs font-bold text-[#3E363F] w-10 text-right">0%</span>
+        </div>
+
+        <!-- 右側：系統狀態與時間 -->
+        <div class="hidden sm:flex items-center gap-2 bg-[#E4F2FC] border-2 border-[#5D535E] rounded-lg px-2.5 h-[32px] font-pixel text-xs font-bold text-[#3E363F]">
+            <span class="text-[#E66C92]">@HxW_1996</span>
+            <span>🐯🍚</span>
+            <span id="system-clock" aria-label="現在時間">--:--</span>
+        </div>
+    </footer>
+
+
+    <!-- =========================================================
+         互動邏輯、智慧去背引擎與橫向卷軸 (JavaScript)
+    ========================================================== -->
+    <script>
+        /* =========================================================
+           A. 使用者親繪素材來源與智慧去背引擎
+           - 透過邊緣洪水填充 (Flood-fill) 將純黑底與純白底精準轉為透明，
+             同時完美保留角色眼白、白色衣服與文字等內部白色區域！
+        ========================================================= */
+        const RAW_USER_ART = {
+            background: 'BG_PNG.png',
+            rainbow: 'BG.RAINBOW_PNG.png',
+            starBlue: 'BG.SKY_PNG(1).png',
+            starPink: 'BG.SKY_PNG.png',
+            petBlink: 'BIRD1_PNG.png',
+            petOpen:  'BIRD2_PNG.png',
+            saluteDuo:'GIRAFFE_PNG.png',
+            flyPig: 'FLYPIG_PNG.png',
+            pumpkin: 'PUMPKIN_PNG.png',
+            wooziBlink:'PIG1_PNG.png',
+            wooziOpen: 'PIG2_PNG.png',
+            hoshiBlink:'PLAYER1_PNG.png',
+            hoshiOpen: 'PLAYER2_PNG.png'
+        };
+
+        const PROCESSED_ART = {};
+
+        /**
+         * 從圖片四周邊緣執行洪水填充 (Flood Fill)，精準移除外部純黑底或純白底，
+         * 絕不誤傷角色內部的白色眼睛、白 T 恤與白色對話框！
+         */
+        function removeEdgeBackground(src, mode) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const w = img.naturalWidth || 300;
+                    const h = img.naturalHeight || 300;
+                    canvas.width = w;
+                    canvas.height = h;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+
+                    const imgData = ctx.getImageData(0, 0, w, h);
+                    const data = imgData.data;
+                    const visited = new Uint8Array(w * h);
+                    const queue = new Int32Array(w * h);
+                    let head = 0, tail = 0;
+
+                    const isBgPixel = (idx) => {
+                        const r = data[idx * 4];
+                        const g = data[idx * 4 + 1];
+                        const b = data[idx * 4 + 2];
+                        const a = data[idx * 4 + 3];
+                        if (a < 15) return true;
+                        if (mode === 'black') {
+                            return r < 32 && g < 32 && b < 32;
+                        } else {
+                            return r > 235 && g > 235 && b > 235;
+                        }
+                    };
+
+                    // 將四條邊界上的背景像素加入佇列
+                    for (let x = 0; x < w; x++) {
+                        const top = x;
+                        const bot = (h - 1) * w + x;
+                        if (!visited[top] && isBgPixel(top)) { visited[top] = 1; queue[tail++] = top; }
+                        if (!visited[bot] && isBgPixel(bot)) { visited[bot] = 1; queue[tail++] = bot; }
+                    }
+                    for (let y = 0; y < h; y++) {
+                        const left = y * w;
+                        const right = y * w + (w - 1);
+                        if (!visited[left] && isBgPixel(left)) { visited[left] = 1; queue[tail++] = left; }
+                        if (!visited[right] && isBgPixel(right)) { visited[right] = 1; queue[tail++] = right; }
+                    }
+
+                    // 4 鄰域洪水填充
+                    while (head < tail) {
+                        const curr = queue[head++];
+                        data[curr * 4 + 3] = 0;
+                        const cx = curr % w;
+                        const cy = (curr - cx) / w;
+
+                        if (cx > 0) {
+                            const n = curr - 1;
+                            if (!visited[n] && isBgPixel(n)) { visited[n] = 1; queue[tail++] = n; }
+                        }
+                        if (cx < w - 1) {
+                            const n = curr + 1;
+                            if (!visited[n] && isBgPixel(n)) { visited[n] = 1; queue[tail++] = n; }
+                        }
+                        if (cy > 0) {
+                            const n = curr - w;
+                            if (!visited[n] && isBgPixel(n)) { visited[n] = 1; queue[tail++] = n; }
+                        }
+                        if (cy < h - 1) {
+                            const n = curr + w;
+                            if (!visited[n] && isBgPixel(n)) { visited[n] = 1; queue[tail++] = n; }
+                        }
+                    }
+
+                    // 羽化邊緣抗鋸齒，消除黑邊/白邊殘留
+                    for (let i = 0; i < w * h; i++) {
+                        if (visited[i]) continue;
+                        const r = data[i * 4];
+                        const g = data[i * 4 + 1];
+                        const b = data[i * 4 + 2];
+                        if (mode === 'black' && r < 48 && g < 48 && b < 48) {
+                            const x = i % w, y = (i - x) / w;
+                            if ((x > 0 && visited[i - 1]) || (x < w - 1 && visited[i + 1]) ||
+                                (y > 0 && visited[i - w]) || (y < h - 1 && visited[i + w])) {
+                                data[i * 4 + 3] = 0;
+                            }
+                        } else if (mode === 'white' && r > 220 && g > 220 && b > 220) {
+                            const x = i % w, y = (i - x) / w;
+                            if ((x > 0 && visited[i - 1]) || (x < w - 1 && visited[i + 1]) ||
+                                (y > 0 && visited[i - w]) || (y < h - 1 && visited[i + w])) {
+                                data[i * 4 + 3] = 0;
+                            }
+                        }
+                    }
+
+                    ctx.putImageData(imgData, 0, 0);
+                    resolve(canvas.toDataURL('image/png'));
+                };
+                img.onerror = () => resolve(src);
+                img.src = src;
+            });
+        }
+
+        let isBlinkingFrame = false;
+
+        async function initAllUserArtworks() {
+            const [
+                starBlue, starPink,
+                petBlink, petOpen, saluteDuo, flyPig, pumpkin,
+                wooziBlink, wooziOpen, hoshiBlink, hoshiOpen
+            ] = await Promise.all([
+                removeEdgeBackground(RAW_USER_ART.starBlue, 'white'),
+                removeEdgeBackground(RAW_USER_ART.starPink, 'white'),
+                removeEdgeBackground(RAW_USER_ART.petBlink, 'black'),
+                removeEdgeBackground(RAW_USER_ART.petOpen, 'black'),
+                removeEdgeBackground(RAW_USER_ART.saluteDuo, 'black'),
+                removeEdgeBackground(RAW_USER_ART.flyPig, 'black'),
+                removeEdgeBackground(RAW_USER_ART.pumpkin, 'black'),
+                removeEdgeBackground(RAW_USER_ART.wooziBlink, 'black'),
+                removeEdgeBackground(RAW_USER_ART.wooziOpen, 'black'),
+                removeEdgeBackground(RAW_USER_ART.hoshiBlink, 'black'),
+                removeEdgeBackground(RAW_USER_ART.hoshiOpen, 'black')
+            ]);
+
+            Object.assign(PROCESSED_ART, {
+                starBlue, starPink,
+                petBlink, petOpen, saluteDuo, flyPig, pumpkin,
+                wooziBlink, wooziOpen, hoshiBlink, hoshiOpen
+            });
+
+            renderStampTools();
+            document.querySelectorAll('.user-art-star-blue').forEach(el => el.src = starBlue);
+            document.querySelectorAll('.user-art-star-pink').forEach(el => el.src = starPink);
+            document.querySelectorAll('.user-art-salute-duo').forEach(el => el.src = saluteDuo);
+            document.querySelectorAll('.user-art-fly-pig').forEach(el => el.src = flyPig);
+            document.querySelectorAll('.user-art-pumpkin').forEach(el => el.src = pumpkin);
+            document.querySelectorAll('.user-art-hoshi-open').forEach(el => el.src = hoshiOpen);
+            document.querySelectorAll('.user-art-woozi-open').forEach(el => el.src = wooziOpen);
+            document.querySelectorAll('.user-art-pet-open').forEach(el => el.src = petOpen);
+
+            updateCharacterSprites(false);
+
+            // 啟動自然眨眼循環 (每 3.2 秒眨眼 0.22 秒)
+            setInterval(() => {
+                if (playerStage.classList.contains('is-walking')) return;
+                updateCharacterSprites(true);
+                setTimeout(() => {
+                    if (!playerStage.classList.contains('is-walking')) {
+                        updateCharacterSprites(false);
+                    }
+                }, 220);
+            }, 3200);
+        }
+
+        function updateCharacterSprites(blink) {
+            isBlinkingFrame = blink;
+            updatePlayerSprites(blink);
+            const tamagotchiImg = document.getElementById('tamagotchi-sprite');
+
+            if (tamagotchiImg && PROCESSED_ART.petOpen) {
+                tamagotchiImg.src = blink ? PROCESSED_ART.petBlink : PROCESSED_ART.petOpen;
+            }
+        }
+
+        function updatePlayerSprites(blink) {
+            isBlinkingFrame = blink;
+            const hoshiImg = document.getElementById('sprite-hoshi');
+            const wooziImg = document.getElementById('sprite-woozi');
+
+            if (hoshiImg && PROCESSED_ART.hoshiOpen) {
+                hoshiImg.src = blink ? PROCESSED_ART.hoshiBlink : PROCESSED_ART.hoshiOpen;
+            }
+            if (wooziImg && PROCESSED_ART.wooziOpen) {
+                wooziImg.src = blink ? PROCESSED_ART.wooziBlink : PROCESSED_ART.wooziOpen;
+            }
+        }
+
+        /* =========================================================
+           B. 橫向桌面滾動與互動控制邏輯
+        ========================================================= */
+        const MAX_SCROLL = 4850;
+        let targetScrollX = 0;
+        let currentScrollX = 0;
+        let keysPressed = { left: false, right: false };
+        let isDraggingCanvas = false;
+        let dragStartX = 0;
+        let dragStartScroll = 0;
+        let lastDirection = 'right';
+
+        const viewport = document.getElementById('viewport');
+        const layerFar = document.getElementById('layer-far');
+        const layerMid = document.getElementById('layer-midground');
+        const layerFore = document.getElementById('layer-foreground');
+        const playerStage = document.getElementById('player-stage');
+        const scrollSlider = document.getElementById('os-scroll-slider');
+        const distanceLabel = document.getElementById('distance-label');
+        const navPills = document.querySelectorAll('.nav-pill');
+
+        // 1. 桌面圖示點擊彩蛋
+        const desktopIconDetails = {
+            pc: '🖥️ 【我的電腦】系統已載入 HxW_1996 專屬核心：Performance 隊長 + Vocal 隊長雙引擎運作中！',
+            line96: '【96LINE】1996.06.15 權順榮 × 1996.11.22 李知勳',
+            beamzip: '【BEAM】內含 2025.03.10 首張單曲輯《BEAM》',
+            horanghae: '【호랑해】比出手勢大喊一聲：호랑해！',
+            wooahae: '【우아해】今天也好好吃米飯！'
+        };
+        const desktopIconKeys = Object.keys(desktopIconDetails);
+        let nextCollisionInfoIndex = 0;
+        let desktopCollisionConsumed = false;
+        let jumpTimer = null;
+        let jumpStartedAt = 0;
+        let raceActive = false;
+        let raceObstacleX = 0;
+        let raceLastFrameAt = 0;
+        let raceScore = 0;
+        let raceSpeed = 0.3;
+        let raceObstacleCleared = false;
+
+        function showDesktopIconDetail(key, x, y) {
+            const box = document.getElementById('desktop-icon-toast');
+            box.textContent = desktopIconDetails[key];
+            box.style.backgroundColor = '#FFF9D6';
+            setTimeout(() => { box.style.backgroundColor = '#FFFDF4'; }, 400);
+            const icons = { pc: '🖥️', line96: '📁', beamzip: '📦', horanghae: '🐯', wooahae: '🍚' };
+            spawnSticker(x, y - 15, icons[key]);
+        }
+
+        function openDesktopIconToast(key, event) {
+            showDesktopIconDetail(key, event.clientX, event.clientY);
+        }
+
+        function startPlayerJump() {
+            if (playerStage.classList.contains('is-jumping')) return;
+            desktopCollisionConsumed = false;
+            jumpStartedAt = performance.now();
+            playerStage.classList.add('is-jumping');
+            clearTimeout(jumpTimer);
+            jumpTimer = setTimeout(() => {
+                playerStage.classList.remove('is-jumping');
+            }, 900);
+        }
+
+        function checkDesktopIconCollision() {
+            if (raceActive || !playerStage.classList.contains('is-jumping') || desktopCollisionConsumed) return;
+            const desktopIcons = document.getElementById('desktop-icons');
+            const target = desktopIcons.getBoundingClientRect();
+            const hit = [...playerStage.querySelectorAll('.chibi-clickable')].some((character) => {
+                const sprite = character.getBoundingClientRect();
+                return sprite.left < target.right && sprite.right > target.left &&
+                    sprite.top < target.bottom && sprite.bottom > target.top;
+            });
+            if (!hit) return;
+
+            desktopCollisionConsumed = true;
+            const key = desktopIconKeys[nextCollisionInfoIndex];
+            nextCollisionInfoIndex = (nextCollisionInfoIndex + 1) % desktopIconKeys.length;
+            const stage = playerStage.getBoundingClientRect();
+            showDesktopIconDetail(key, stage.left + stage.width / 2, stage.top);
+        }
+
+        function startObstacleRace() {
+            raceActive = true;
+            raceScore = 0;
+            raceSpeed = 0.22;
+            raceObstacleX = window.innerWidth + 320;
+            raceLastFrameAt = 0;
+            raceObstacleCleared = false;
+            playerStage.classList.add('is-racing');
+            playerStage.classList.remove('is-jumping');
+            clearTimeout(jumpTimer);
+            document.getElementById('race-obstacle').style.visibility = 'visible';
+            document.getElementById('race-obstacle').style.height = '42px';
+            document.getElementById('race-obstacle').style.left = `${raceObstacleX}px`;
+            document.getElementById('race-status').textContent = '障礙賽：0 分，按 ↑ / Space 跳躍';
+            document.getElementById('race-start').textContent = '重新開始';
+        }
+
+        function updateObstacleRace(timestamp) {
+            if (!raceActive) return;
+            const obstacle = document.getElementById('race-obstacle');
+            const elapsed = raceLastFrameAt ? Math.min(timestamp - raceLastFrameAt, 50) : 0;
+            raceLastFrameAt = timestamp;
+            raceObstacleX -= elapsed * raceSpeed;
+            obstacle.style.left = `${raceObstacleX}px`;
+
+            const obstacleRect = obstacle.getBoundingClientRect();
+            const playerRect = playerStage.getBoundingClientRect();
+            const horizontalHit = playerRect.left + 18 < obstacleRect.right - 4 &&
+                playerRect.right - 18 > obstacleRect.left + 4;
+
+            if (horizontalHit && !raceObstacleCleared) {
+                const jumpElapsed = timestamp - jumpStartedAt;
+                const jumping = playerStage.classList.contains('is-jumping') && jumpElapsed <= 900;
+                const jumpHeight = jumping
+                    ? Math.max(0, 150 * Math.sin(Math.PI * jumpElapsed / 900))
+                    : 0;
+                const clearsObstacle = jumpHeight >= obstacle.offsetHeight * 0.55;
+                if (clearsObstacle) {
+                    raceObstacleCleared = true;
+                } else if (!jumping || jumpElapsed >= 850) {
+                    raceActive = false;
+                    playerStage.classList.remove('is-racing');
+                    obstacle.style.visibility = 'hidden';
+                    document.getElementById('race-status').textContent = `遊戲結束！得分 ${raceScore}`;
+                    document.getElementById('race-start').textContent = '再玩一次';
+                    return;
+                }
+            }
+
+            if (raceObstacleX + obstacle.offsetWidth < 0) {
+                raceScore++;
+                raceSpeed = Math.min(0.42, raceSpeed + 0.012);
+                raceObstacleX = window.innerWidth + 360 + Math.random() * 360;
+                raceObstacleCleared = false;
+                obstacle.style.height = raceScore % 3 === 0 ? '30px' : '42px';
+                document.getElementById('race-status').textContent = `障礙賽：${raceScore} 分，按 ↑ / Space 跳躍`;
+            }
+        }
+
+        // 2. 吊飾搖晃互動 (Section 1 壓克力雙人吊飾)
+        function swingCharm(event) {
+            const charm = document.getElementById('hxw-charm');
+            charm.classList.remove('swinging');
+            void charm.offsetWidth;
+            charm.classList.add('swinging');
+            spawnSticker(event.clientX, event.clientY - 15, '✨');
+            spawnSticker(event.clientX + 20, event.clientY - 25, '🐯');
+            spawnSticker(event.clientX - 20, event.clientY - 25, '🍚');
+        }
+
+        // 3. 96Line 聊天室快捷發送鈕
+        const chatQuickReplies = {
+            horanghae: {
+                caratName: '💎 CARAT 克拉',
+                caratText: '🐯 호랑해！！',
+                replyName: '🐯 權順榮 (HOSHI)',
+                replyColor: '#FF8C42',
+                replyBg: '#FFF2E6',
+                replyText: '哇啊~ 호랑해~🐯🧡',
+                sticker: '🐯'
+            },
+            wooahae: {
+                caratName: '💎 CARAT',
+                caratText: '🍚 우아해！',
+                replyName: '🍚 李知勳 (WOOZI)',
+                replyColor: '#E66C92',
+                replyBg: '#FCEBF1',
+                replyText: '謝謝你們喜歡《BEAM》，記得按時吃飯喔！ 우아해 🍚✨',
+                sticker: '🍚'
+            },
+            salute: {
+                caratName: '💎 CARAT 克拉',
+                caratText: '🫡 충성',
+                sticker: '🫡'
+            }
+        };
+
+        function sendChatPreset(type) {
+            const data = chatQuickReplies[type];
+            if (!data) return;
+            const log = document.getElementById('qq-chat-log');
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'flex flex-col items-end';
+            userMsg.innerHTML = `
+                <div class="font-bold text-[#5B8DB8] mb-0.5">${data.caratName}</div>
+                <div class="inline-block bg-[#E4F2FC] border-2 border-[#5D535E] rounded-2xl rounded-tr-none px-3.5 py-2 text-[#3E363F] font-bold">
+                    ${data.caratText}
+                </div>
+            `;
+            log.appendChild(userMsg);
+            log.scrollTop = log.scrollHeight;
+            spawnSticker(window.innerWidth * 0.45, window.innerHeight * 0.45, data.sticker);
+            if (!data.replyText) return;
+
+            setTimeout(() => {
+                const replyMsg = document.createElement('div');
+                replyMsg.innerHTML = `
+                    <div class="font-bold mb-0.5" style="color: ${data.replyColor}">${data.replyName}</div>
+                    <div class="inline-block border-2 border-[#5D535E] rounded-2xl rounded-tl-none px-3.5 py-2 text-[#3E363F] font-bold" style="background: ${data.replyBg}">
+                        ${data.replyText}
+                    </div>
+                `;
+                log.appendChild(replyMsg);
+                log.scrollTop = log.scrollHeight;
+            }, 450);
+        }
+
+        // 4. 專輯播放切換 + 8-Bit 旋律試聽
+        const trackList = [
+            {
+                title: '1. 동갑내기 (96ers)（主打歌）',
+                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20%EB%8F%99%EA%B0%91%EB%82%B4%EA%B8%B0',
+                notes: [523.25, 659.25, 783.99, 659.25, 880.00, 783.99, 659.25, 587.33]
+            },
+            {
+                title: '2. PINOCCHIO (feat. So!YoON!)（收錄曲）',
+                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20PINOCCHIO',
+                notes: [440.00, 523.25, 659.25, 587.33, 523.25, 493.88, 523.25, 659.25]
+            },
+            {
+                title: '3. STUPID IDIOT（收錄曲）',
+                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20STUPID%20IDIOT',
+                notes: [587.33, 587.33, 783.99, 659.25, 587.33, 523.25, 587.33, 783.99]
+            },
+            {
+                title: '1. 날 쏘고 가라 (Bring It)（收錄曲）',
+                url: 'https://open.spotify.com/search/SEVENTEEN%20%EB%82%A0%20%EC%8F%98%EA%B3%A0%20%EA%B0%80%EB%9D%BC%20Bring%20It',
+                notes: [392.00, 466.16, 523.25, 587.33, 622.25, 587.33, 523.25, 783.99]
+            }
+        ];
+
+        let currentTrackIdx = 0;
+        let audioCtx = null;
+        let synthInterval = null;
+        let isSynthPlaying = false;
+
+        function selectTrack(idx) {
+            currentTrackIdx = idx;
+            const track = trackList[idx];
+            document.getElementById('now-playing-title').textContent = track.title;
+            document.getElementById('now-playing-spotify-link').href = track.url;
+
+            document.querySelectorAll('.track-row').forEach((row, i) => {
+                if (i === idx) {
+                    row.classList.add('!bg-[#FFE8D6]', '!border-[#5D535E]');
+                } else {
+                    row.classList.remove('!bg-[#FFE8D6]', '!border-[#5D535E]');
+                }
+            });
+
+            if (isSynthPlaying) {
+                stopChiptunePreview();
+                startChiptunePreview();
+            }
+        }
+
+        function startChiptunePreview() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            isSynthPlaying = true;
+            document.getElementById('btn-synth-toggle').textContent = '⏸ 暫停旋律';
+            const notes = trackList[currentTrackIdx].notes;
+            let step = 0;
+
+            const playStep = () => {
+                if (!isSynthPlaying) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(notes[step % notes.length], audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.28);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.29);
+                step++;
+            };
+
+            playStep();
+            synthInterval = setInterval(playStep, 320);
+        }
+
+        function stopChiptunePreview() {
+            isSynthPlaying = false;
+            clearInterval(synthInterval);
+            document.getElementById('btn-synth-toggle').textContent = '▶ 播放旋律';
+        }
+
+        function toggleChiptunePreview() {
+            if (isSynthPlaying) stopChiptunePreview();
+            else startChiptunePreview();
+        }
+
+        // 5. 遊戲 A：🎨 HxW 手繪貼紙蓋章牆 (所有 PNG 素材皆可使用)
+        let selectedStampNum = 1;
+        let selectedPlacedStamp = null;
+        let stampDragState = null;
+        let suppressNextStampClick = false;
+        const STAMP_OPTIONS = [
+            { key: 'hoshiBlink', label: '1' },
+            { key: 'hoshiOpen', label: '2' },
+            { key: 'wooziBlink', label: '3' },
+            { key: 'wooziOpen', label: '4' },
+            { key: 'petBlink', label: '5' },
+            { key: 'petOpen', label: '6' },
+            { key: 'flyPig', label: '7' },
+            { key: 'pumpkin', label: '8' },
+            { key: 'saluteDuo', label: '9' },
+            { key: 'starBlue', label: '10' },
+            { key: 'starPink', label: '11' }
+        ];
+
+        function renderStampTools() {
+            const tools = document.getElementById('stamp-tools');
+            tools.replaceChildren();
+
+            STAMP_OPTIONS.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'stamp-tool-btn y2k-btn min-w-0 px-1 py-0.5 text-[9px] font-black flex items-center justify-center gap-1';
+                button.title = option.label;
+                button.dataset.stampIndex = `${index + 1}`;
+                button.addEventListener('click', () => selectStamp(index + 1));
+
+                const image = document.createElement('img');
+                image.className = 'w-4 h-4 flex-shrink-0 object-contain';
+                image.alt = '';
+                image.src = PROCESSED_ART[option.key] || RAW_USER_ART[option.key];
+                button.append(image);
+
+                const label = document.createElement('span');
+                label.className = 'truncate';
+                label.textContent = option.label;
+                button.append(label);
+                tools.append(button);
+            });
+
+            selectStamp(selectedStampNum);
+        }
+
+        function selectStamp(num) {
+            selectedStampNum = num;
+            document.querySelectorAll('.stamp-tool-btn').forEach((btn, idx) => {
+                btn.classList.toggle('stamp-tool-selected', idx + 1 === num);
+            });
+        }
+
+        function placeStampOnWall(event) {
+            const wall = document.getElementById('stamp-canvas-wall');
+            if (suppressNextStampClick) {
+                suppressNextStampClick = false;
+                return;
+            }
+
+            const clickedStamp = event.target.closest('.placed-stamp');
+            if (clickedStamp) {
+                selectPlacedStamp(clickedStamp);
+                return;
+            }
+
+            const hint = document.getElementById('stamp-canvas-hint');
+            if (hint) hint.style.display = 'none';
+
+            const rect = wall.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const angle = Math.round(Math.random() * 28 - 14);
+
+            const stampEl = document.createElement('div');
+            stampEl.className = 'placed-stamp';
+            stampEl.style.left = `${x}px`;
+            stampEl.style.top = `${y}px`;
+            stampEl.dataset.size = '64';
+            stampEl.dataset.angle = `${angle}`;
+            stampEl.style.setProperty('--rot', `${angle}deg`);
+
+            const img = document.createElement('img');
+            const selectedOption = STAMP_OPTIONS[selectedStampNum - 1];
+            img.src = PROCESSED_ART[selectedOption.key] || RAW_USER_ART[selectedOption.key];
+            img.className = 'object-contain pointer-events-none';
+            img.style.width = `${stampEl.dataset.size}px`;
+            img.style.height = `${stampEl.dataset.size}px`;
+            stampEl.appendChild(img);
+            stampEl.addEventListener('animationend', () => {
+                stampEl.style.animation = 'none';
+                applyStampTransform(stampEl);
+            }, { once: true });
+            stampEl.addEventListener('pointerdown', (event) => startStampDrag(event, stampEl));
+            stampEl.addEventListener('pointermove', (event) => moveStamp(event, stampEl));
+            stampEl.addEventListener('pointerup', (event) => endStampDrag(event, stampEl));
+            stampEl.addEventListener('pointercancel', (event) => endStampDrag(event, stampEl));
+
+            wall.appendChild(stampEl);
+            selectPlacedStamp(stampEl);
+        }
+
+        function startStampDrag(event, stampEl) {
+            if (event.button !== 0) return;
+            event.preventDefault();
+            event.stopPropagation();
+            selectPlacedStamp(stampEl);
+            stampEl.style.animation = 'none';
+
+            const wall = document.getElementById('stamp-canvas-wall');
+            const wallRect = wall.getBoundingClientRect();
+            const stampRect = stampEl.getBoundingClientRect();
+            stampDragState = {
+                pointerId: event.pointerId,
+                wallRect,
+                offsetX: event.clientX - (stampRect.left + stampRect.width / 2),
+                offsetY: event.clientY - (stampRect.top + stampRect.height / 2)
+            };
+            stampEl.setPointerCapture(event.pointerId);
+        }
+
+        function moveStamp(event, stampEl) {
+            if (!stampDragState || stampDragState.pointerId !== event.pointerId) return;
+            event.preventDefault();
+            stampDragState.moved = true;
+
+            const halfSize = Number(stampEl.dataset.size) / 2;
+            const x = event.clientX - stampDragState.wallRect.left - stampDragState.offsetX;
+            const y = event.clientY - stampDragState.wallRect.top - stampDragState.offsetY;
+            stampEl.style.left = `${Math.max(halfSize, Math.min(stampDragState.wallRect.width - halfSize, x))}px`;
+            stampEl.style.top = `${Math.max(halfSize, Math.min(stampDragState.wallRect.height - halfSize, y))}px`;
+            applyStampTransform(stampEl);
+        }
+
+        function endStampDrag(event, stampEl) {
+            if (!stampDragState || stampDragState.pointerId !== event.pointerId) return;
+            const wasMoved = stampDragState.moved;
+            stampDragState = null;
+            if (stampEl.hasPointerCapture(event.pointerId)) {
+                stampEl.releasePointerCapture(event.pointerId);
+            }
+            if (wasMoved) {
+                suppressNextStampClick = true;
+                setTimeout(() => { suppressNextStampClick = false; }, 0);
+            }
+        }
+
+        function selectPlacedStamp(stampEl) {
+            if (selectedPlacedStamp) selectedPlacedStamp.classList.remove('selected');
+            selectedPlacedStamp = stampEl;
+            selectedPlacedStamp.classList.add('selected');
+
+            const size = Number(stampEl.dataset.size);
+            const angle = Number(stampEl.dataset.angle);
+            document.getElementById('stamp-size').disabled = false;
+            document.getElementById('stamp-angle').disabled = false;
+            document.getElementById('delete-selected-stamp').disabled = false;
+            document.getElementById('stamp-size').value = `${size}`;
+            document.getElementById('stamp-angle').value = `${angle}`;
+            document.getElementById('stamp-size-value').textContent = `${size} px`;
+            document.getElementById('stamp-angle-value').textContent = `${angle}°`;
+            document.getElementById('stamp-selection-label').textContent = '已選取：拖曳移動，或調整大小與角度';
+        }
+
+        function applyStampTransform(stampEl) {
+            stampEl.style.transform = `translate(-50%, -50%) rotate(${stampEl.dataset.angle}deg)`;
+        }
+
+        function updateSelectedStamp() {
+            if (!selectedPlacedStamp) return;
+
+            const sizeInput = document.getElementById('stamp-size');
+            const angleInput = document.getElementById('stamp-angle');
+            const size = Number(sizeInput.value);
+            const angle = Number(angleInput.value);
+            const image = selectedPlacedStamp.querySelector('img');
+
+            selectedPlacedStamp.style.animation = 'none';
+            selectedPlacedStamp.dataset.size = `${size}`;
+            selectedPlacedStamp.dataset.angle = `${angle}`;
+            image.style.width = `${size}px`;
+            image.style.height = `${size}px`;
+            applyStampTransform(selectedPlacedStamp);
+            document.getElementById('stamp-size-value').textContent = `${size} px`;
+            document.getElementById('stamp-angle-value').textContent = `${angle}°`;
+        }
+
+        function deleteSelectedStamp() {
+            if (!selectedPlacedStamp) return;
+            selectedPlacedStamp.remove();
+            selectedPlacedStamp = null;
+            resetStampEditor();
+
+            const wall = document.getElementById('stamp-canvas-wall');
+            if (!wall.querySelector('.placed-stamp')) {
+                document.getElementById('stamp-canvas-hint').style.display = 'inline-block';
+            }
+        }
+
+        function resetStampEditor() {
+            document.getElementById('stamp-size').disabled = true;
+            document.getElementById('stamp-angle').disabled = true;
+            document.getElementById('delete-selected-stamp').disabled = true;
+            document.getElementById('stamp-selection-label').textContent = '點選貼紙選取，再拖曳移動或調整大小角度';
+        }
+
+        let petFullness = 70;
+        let petAffection = 70;
+        let petMoodTimer = null;
+        let petHasPoop = true;
+
+        function updatePetPoop() {
+            const poop = document.getElementById('pet-poop');
+            poop.classList.toggle('hidden', !petHasPoop);
+        }
+
+        function updatePetCare() {
+            document.getElementById('pet-hunger-value').textContent = `${petFullness}%`;
+            document.getElementById('pet-hunger-bar').style.width = `${petFullness}%`;
+            document.getElementById('pet-love-value').textContent = `${petAffection}%`;
+            document.getElementById('pet-love-bar').style.width = `${petAffection}%`;
+
+            const mood = document.getElementById('pet-mood');
+            if (petFullness < 30) mood.textContent = '肚子餓了，餵我吧！';
+            else if (petAffection < 30) mood.textContent = '想要摸摸～';
+            else if (petFullness > 80 && petAffection > 80) mood.textContent = '最喜歡你了！';
+            else mood.textContent = '好開心！';
+        }
+
+        function showPetReaction(message) {
+            const mood = document.getElementById('pet-mood');
+            mood.textContent = message;
+            clearTimeout(petMoodTimer);
+            petMoodTimer = setTimeout(updatePetCare, 1800);
+        }
+
+        function feedPet() {
+            petFullness = Math.min(100, petFullness + 25);
+            petAffection = Math.min(100, petAffection + 3);
+            updatePetCare();
+            showPetReaction('好吃！謝謝你 🍎');
+        }
+
+        function petBird() {
+            petAffection = Math.min(100, petAffection + 12);
+            updatePetCare();
+            showPetReaction('蹭蹭你的手～💖');
+            spawnSticker(window.innerWidth * 0.52, window.innerHeight * 0.55, '💖');
+        }
+
+        function cleanPetPoop() {
+            if (!petHasPoop) {
+                showPetReaction('目前很乾淨！LATTE 好舒服～');
+                return;
+            }
+            petHasPoop = false;
+            updatePetPoop();
+            petAffection = Math.min(100, petAffection + 5);
+            updatePetCare();
+            showPetReaction('清乾淨了！謝謝你 🧹');
+        }
+
+        function startPetCare() {
+            updatePetCare();
+            updatePetPoop();
+            setInterval(() => {
+                petFullness = Math.max(0, petFullness - 3);
+                petAffection = Math.max(0, petAffection - 1);
+                let didPoop = false;
+                if (!petHasPoop) {
+                    petHasPoop = true;
+                    updatePetPoop();
+                    didPoop = true;
+                }
+                updatePetCare();
+                if (didPoop) showPetReaction('LATTE 留下了便便，記得清理喔！');
+            }, 45000);
+        }
+
+        function clearStampWall() {
+            const wall = document.getElementById('stamp-canvas-wall');
+            wall.querySelectorAll('.placed-stamp').forEach(el => el.remove());
+            selectedPlacedStamp = null;
+            resetStampEditor();
+            const hint = document.getElementById('stamp-canvas-hint');
+            if (hint) hint.style.display = 'inline-block';
+        }
+
+        // 6. 遊戲 B：💣 5×5 踩地雷 (4 顆小炸彈 + 21 顆鑽石)
+        let mineBoard = [];
+        let revealedCount = 0;
+        let mineGameOver = false;
+
+        function initMinesweeper() {
+            const grid = document.getElementById('minesweeper-grid');
+            const status = document.getElementById('mine-status');
+            if (!grid) return;
+            grid.innerHTML = '';
+            revealedCount = 0;
+            mineGameOver = false;
+            status.textContent = '安全過關！繼續尋找鑽石 💎';
+            status.style.backgroundColor = '#FFF9D6';
+
+            mineBoard = Array(25).fill(false);
+            let bombsPlaced = 0;
+            while (bombsPlaced < 4) {
+                const idx = Math.floor(Math.random() * 25);
+                if (!mineBoard[idx]) {
+                    mineBoard[idx] = true;
+                    bombsPlaced++;
+                }
+            }
+
+            for (let i = 0; i < 25; i++) {
+                const cell = document.createElement('button');
+                cell.className = 'mine-cell font-pixel';
+                cell.dataset.index = i;
+                cell.onclick = (e) => handleMineClick(i, cell, e);
+                grid.appendChild(cell);
+            }
+        }
+
+        function handleMineClick(idx, cell, event) {
+            if (mineGameOver || cell.classList.contains('revealed')) return;
+            const status = document.getElementById('mine-status');
+
+            if (mineBoard[idx]) {
+                mineGameOver = true;
+                cell.classList.add('revealed', 'bomb-hit');
+                cell.textContent = '💣';
+                status.textContent = '💥 砰！踩到小炸彈了，點「重新開始」再挑戰一次！';
+                status.style.backgroundColor = '#FFD6E0';
+
+                document.querySelectorAll('#minesweeper-grid .mine-cell').forEach((btn, i) => {
+                    if (mineBoard[i]) {
+                        btn.classList.add('revealed', 'bomb-hit');
+                        btn.textContent = '💣';
+                    }
+                });
+                return;
+            }
+
+            cell.classList.add('revealed');
+            revealedCount++;
+
+            const r = Math.floor(idx / 5), c = idx % 5;
+            let adjBombs = 0;
+            for (let dr = -1; dr <= 1; dr++) {
+                for (let dc = -1; dc <= 1; dc++) {
+                    const nr = r + dr, nc = c + dc;
+                    if (nr >= 0 && nr < 5 && nc >= 0 && nc < 5 && mineBoard[nr * 5 + nc]) adjBombs++;
+                }
+            }
+
+            cell.innerHTML = adjBombs > 0
+                ? `<span class="text-xs font-black text-[#5B8DB8]">${adjBombs}</span>`
+                : '💎';
+            spawnSticker(event.clientX, event.clientY - 12, '💎');
+
+            if (revealedCount >= 21) {
+                mineGameOver = true;
+                status.textContent = '🎉 太厲害了！成功找出所有鑽石！호랑해＆우아해 💎✨';
+                status.style.backgroundColor = '#DFF5E3';
+                launchCelebrationStickers();
+            } else {
+                status.textContent = '安全過關！繼續尋找鑽石 💎';
+            }
+        }
+
+        function launchCelebrationStickers() {
+            const icons = ['💎', '🐯', '🍚', '✨', '♥'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const rx = Math.random() * (window.innerWidth - 60) + 30;
+                    const ry = window.innerHeight * (0.4 + Math.random() * 0.4);
+                    spawnSticker(rx, ry, icons[i % icons.length]);
+                }, i * 65);
+            }
+        }
+
+        // 7. 角色點擊台詞泡泡 + 點擊微笑瞇眼切換
+        const characterLines = {
+            hoshi: ['호랑해～🐯', '我是老虎！', '今天也要加油！'],
+            woozi: ['우아해 🍚', '《BEAM》好聽嗎？', '辛苦了克拉～']
+        };
+        let charLineIndex = { hoshi: 0, woozi: 0 };
+        let bubbleTimers = { hoshi: null, woozi: null };
+
+        function speakCharacterLine(who) {
+            const bubble = document.getElementById(`bubble-${who}`);
+            const lines = characterLines[who];
+            const idx = charLineIndex[who] % lines.length;
+            bubble.textContent = lines[idx];
+            charLineIndex[who]++;
+
+            // 點擊時讓角色切換到瞇眼開心表情 0.6 秒
+            const spriteEl = document.getElementById(`sprite-${who}`);
+            if (spriteEl && PROCESSED_ART[`${who}Blink`]) {
+                spriteEl.src = PROCESSED_ART[`${who}Blink`];
+                setTimeout(() => {
+                    if (!isBlinkingFrame && PROCESSED_ART[`${who}Open`]) {
+                        spriteEl.src = PROCESSED_ART[`${who}Open`];
+                    }
+                }, 600);
+            }
+
+            bubble.classList.remove('hidden', 'show');
+            void bubble.offsetWidth;
+            bubble.classList.add('show');
+
+            clearTimeout(bubbleTimers[who]);
+            bubbleTimers[who] = setTimeout(() => {
+                bubble.classList.add('hidden');
+            }, 2400);
+        }
+
+        // 8. 通用貼紙粒子特效
+        function spawnSticker(x, y, emoji) {
+            const el = document.createElement('div');
+            el.className = 'floating-sticker text-2xl';
+            el.textContent = emoji;
+            el.style.left = `${x}px`;
+            el.style.top = `${y}px`;
+            document.body.appendChild(el);
+            setTimeout(() => el.remove(), 1300);
+        }
+
+        function initPumpkinCursor() {
+            if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+            const cursor = document.getElementById('pumpkin-cursor');
+            cursor.src = PROCESSED_ART.pumpkin;
+            document.documentElement.classList.add('pumpkin-cursor-active');
+
+            window.addEventListener('pointermove', (event) => {
+                cursor.style.left = `${event.clientX - 54}px`;
+                cursor.style.top = `${event.clientY - 54}px`;
+                cursor.style.visibility = 'visible';
+            });
+            document.addEventListener('pointerleave', () => {
+                cursor.style.visibility = 'hidden';
+            });
+        }
+
+        // 9. 導覽跳轉與工作列控制
+        function jumpToSection(xPos) {
+            targetScrollX = Math.max(0, Math.min(MAX_SCROLL, xPos));
+        }
+
+        function toggleStartMenu() {
+            document.getElementById('start-menu-popup').classList.toggle('hidden');
+        }
+
+        // 10. 輸入事件監聽
+        window.addEventListener('wheel', (e) => {
+            const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+            targetScrollX = Math.max(0, Math.min(MAX_SCROLL, targetScrollX + delta * 1.15));
+        }, { passive: true });
+
+        window.addEventListener('keydown', (e) => {
+            if (raceActive && e.code === 'Space') {
+                if (!e.target.closest('input, textarea, select, video, [contenteditable="true"]')) {
+                    e.preventDefault();
+                    if (!e.repeat) startPlayerJump();
+                }
+            }
+            if (e.key === 'ArrowUp') {
+                if (!e.target.closest('input, textarea, select, video, [contenteditable="true"]')) {
+                    e.preventDefault();
+                    if (!e.repeat) startPlayerJump();
+                }
+            }
+            if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keysPressed.right = true;
+            if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keysPressed.left = true;
+        });
+
+        window.addEventListener('keyup', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keysPressed.right = false;
+            if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keysPressed.left = false;
+        });
+
+        const btnLeft = document.getElementById('btn-move-left');
+        const btnRight = document.getElementById('btn-move-right');
+        ['mousedown', 'touchstart'].forEach(evt => {
+            btnLeft.addEventListener(evt, (e) => { e.preventDefault(); keysPressed.left = true; });
+            btnRight.addEventListener(evt, (e) => { e.preventDefault(); keysPressed.right = true; });
+        });
+        ['mouseup', 'mouseleave', 'touchend'].forEach(evt => {
+            btnLeft.addEventListener(evt, () => keysPressed.left = false);
+            btnRight.addEventListener(evt, () => keysPressed.right = false);
+        });
+
+        scrollSlider.addEventListener('input', (e) => {
+            targetScrollX = parseFloat(e.target.value);
+        });
+
+        viewport.addEventListener('mousedown', (e) => {
+            if (e.target.closest('button, input, a, iframe, .y2k-window, .charm-pendulum')) return;
+            isDraggingCanvas = true;
+            dragStartX = e.clientX;
+            dragStartScroll = targetScrollX;
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDraggingCanvas) return;
+            const dx = dragStartX - e.clientX;
+            targetScrollX = Math.max(0, Math.min(MAX_SCROLL, dragStartScroll + dx * 1.35));
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDraggingCanvas = false;
+        });
+
+        let touchStartX = 0;
+        let touchStartScroll = 0;
+        viewport.addEventListener('touchstart', (e) => {
+            if (e.target.closest('button, input, a, iframe')) return;
+            touchStartX = e.touches[0].clientX;
+            touchStartScroll = targetScrollX;
+        }, { passive: true });
+
+        viewport.addEventListener('touchmove', (e) => {
+            const dx = touchStartX - e.touches[0].clientX;
+            targetScrollX = Math.max(0, Math.min(MAX_SCROLL, touchStartScroll + dx * 1.3));
+        }, { passive: true });
+
+        // 11. 主動畫迴圈
+        let lastWalkFrameAt = 0;
+        let walkingFrame = false;
+        let wasWalking = false;
+
+        function mainLoop(timestamp) {
+            const moveSpeed = 14;
+            if (keysPressed.right) targetScrollX = Math.min(MAX_SCROLL, targetScrollX + moveSpeed);
+            if (keysPressed.left) targetScrollX = Math.max(0, targetScrollX - moveSpeed);
+
+            const diff = targetScrollX - currentScrollX;
+            currentScrollX += diff * 0.12;
+
+            if (Math.abs(diff) > 0.6) {
+                playerStage.classList.add('is-walking');
+                if (!wasWalking) {
+                    walkingFrame = false;
+                    lastWalkFrameAt = timestamp;
+                    updatePlayerSprites(walkingFrame);
+                } else if (timestamp - lastWalkFrameAt >= 180) {
+                    walkingFrame = !walkingFrame;
+                    lastWalkFrameAt = timestamp;
+                    updatePlayerSprites(walkingFrame);
+                }
+                wasWalking = true;
+                if (diff > 0 && lastDirection !== 'right') {
+                    lastDirection = 'right';
+                    playerStage.classList.remove('facing-left');
+                    playerStage.classList.add('facing-right');
+                } else if (diff < 0 && lastDirection !== 'left') {
+                    lastDirection = 'left';
+                    playerStage.classList.remove('facing-right');
+                    playerStage.classList.add('facing-left');
+                }
+            } else {
+                playerStage.classList.remove('is-walking');
+                if (wasWalking) updatePlayerSprites(false);
+                wasWalking = false;
+            }
+
+            layerFar.style.transform = `translate3d(${-currentScrollX * 0.25}px, 0, 0)`;
+            layerMid.style.transform = `translate3d(${-currentScrollX * 0.55}px, 0, 0)`;
+            layerFore.style.transform = `translate3d(${-currentScrollX}px, 0, 0)`;
+            checkDesktopIconCollision();
+            updateObstacleRace(timestamp);
+
+            scrollSlider.value = Math.round(currentScrollX);
+            distanceLabel.textContent = `${Math.round((currentScrollX / MAX_SCROLL) * 100)}%`;
+
+            let activeIdx = 0;
+            if (currentScrollX >= 3950) activeIdx = 3;
+            else if (currentScrollX >= 2450) activeIdx = 2;
+            else if (currentScrollX >= 1000) activeIdx = 1;
+
+            navPills.forEach((pill, idx) => {
+                if (idx === activeIdx) pill.classList.add('bg-[#B7D8F2]');
+                else pill.classList.remove('bg-[#B7D8F2]');
+            });
+
+            requestAnimationFrame(mainLoop);
+        }
+
+        window.onload = function () {
+            const clock = document.getElementById('system-clock');
+            const updateClock = () => {
+                const now = new Date();
+                clock.textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            };
+            updateClock();
+            window.setInterval(updateClock, 1000);
+            initAllUserArtworks().then(initPumpkinCursor);
+            initMinesweeper();
+            startPetCare();
+            mainLoop();
+        };
+    </script>
+    <img id="pumpkin-cursor" alt="" aria-hidden="true" />
+</body>
+</html>
