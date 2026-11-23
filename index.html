@@ -255,8 +255,8 @@
         #pumpkin-cursor {
             position: fixed;
             z-index: 1000;
-            width: 108px;
-            height: 108px;
+            width: 72px;
+            height: 72px;
             object-fit: contain;
             pointer-events: none;
             visibility: hidden;
@@ -1082,13 +1082,6 @@
                                     </div>
                                 </div>
 
-                                <!-- 站內即時試聽音效小切換鈕 -->
-                                <div class="mt-3 pt-2 border-t border-dashed border-[#5D535E]/40 flex items-center justify-between">
-                                    <span class="text-[11px] font-bold text-[#5D535E]">🎵 8-Bit 音樂盒旋律試聽：</span>
-                                    <button id="btn-synth-toggle" onclick="toggleChiptunePreview()" class="y2k-btn px-2.5 py-1 text-[11px] font-black !bg-[#FFE885] text-[#3E363F]">
-                                        ▶ 播放旋律
-                                    </button>
-                                </div>
                             </div>
 
                         </div>
@@ -1732,34 +1725,27 @@
             }, 450);
         }
 
-        // 4. 專輯播放切換 + 8-Bit 旋律試聽
+        // 4. 專輯播放切換
         const trackList = [
             {
                 title: '1. 동갑내기 (96ers)（主打歌）',
-                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20%EB%8F%99%EA%B0%91%EB%82%B4%EA%B8%B0',
-                notes: [523.25, 659.25, 783.99, 659.25, 880.00, 783.99, 659.25, 587.33]
+                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20%EB%8F%99%EA%B0%91%EB%82%B4%EA%B8%B0'
             },
             {
                 title: '2. PINOCCHIO (feat. So!YoON!)（收錄曲）',
-                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20PINOCCHIO',
-                notes: [440.00, 523.25, 659.25, 587.33, 523.25, 493.88, 523.25, 659.25]
+                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20PINOCCHIO'
             },
             {
                 title: '3. STUPID IDIOT（收錄曲）',
-                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20STUPID%20IDIOT',
-                notes: [587.33, 587.33, 783.99, 659.25, 587.33, 523.25, 587.33, 783.99]
+                url: 'https://open.spotify.com/search/HOSHI%20WOOZI%20STUPID%20IDIOT'
             },
             {
                 title: '1. 날 쏘고 가라 (Bring It)（收錄曲）',
-                url: 'https://open.spotify.com/search/SEVENTEEN%20%EB%82%A0%20%EC%8F%98%EA%B3%A0%20%EA%B0%80%EB%9D%BC%20Bring%20It',
-                notes: [392.00, 466.16, 523.25, 587.33, 622.25, 587.33, 523.25, 783.99]
+                url: 'https://open.spotify.com/search/SEVENTEEN%20%EB%82%A0%20%EC%8F%98%EA%B3%A0%20%EA%B0%80%EB%9D%BC%20Bring%20It'
             }
         ];
 
         let currentTrackIdx = 0;
-        let audioCtx = null;
-        let synthInterval = null;
-        let isSynthPlaying = false;
 
         function selectTrack(idx) {
             currentTrackIdx = idx;
@@ -1774,52 +1760,6 @@
                     row.classList.remove('!bg-[#FFE8D6]', '!border-[#5D535E]');
                 }
             });
-
-            if (isSynthPlaying) {
-                stopChiptunePreview();
-                startChiptunePreview();
-            }
-        }
-
-        function startChiptunePreview() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-
-            isSynthPlaying = true;
-            document.getElementById('btn-synth-toggle').textContent = '⏸ 暫停旋律';
-            const notes = trackList[currentTrackIdx].notes;
-            let step = 0;
-
-            const playStep = () => {
-                if (!isSynthPlaying) return;
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.setValueAtTime(notes[step % notes.length], audioCtx.currentTime);
-                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.28);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.29);
-                step++;
-            };
-
-            playStep();
-            synthInterval = setInterval(playStep, 320);
-        }
-
-        function stopChiptunePreview() {
-            isSynthPlaying = false;
-            clearInterval(synthInterval);
-            document.getElementById('btn-synth-toggle').textContent = '▶ 播放旋律';
-        }
-
-        function toggleChiptunePreview() {
-            if (isSynthPlaying) stopChiptunePreview();
-            else startChiptunePreview();
         }
 
         // 5. 遊戲 A：🎨 HxW 手繪貼紙蓋章牆 (所有 PNG 素材皆可使用)
@@ -2206,7 +2146,7 @@
         // 7. 角色點擊台詞泡泡 + 點擊微笑瞇眼切換
         const characterLines = {
             hoshi: ['호랑해～🐯', '我是老虎！', '今天也要加油！'],
-            woozi: ['우아해 🍚', '《BEAM》好聽嗎？', '辛苦了克拉～']
+            woozi: ['우아해 🍚', '《BEAM》好聽嗎？', '辛苦了～']
         };
         let charLineIndex = { hoshi: 0, woozi: 0 };
         let bubbleTimers = { hoshi: null, woozi: null };
@@ -2255,11 +2195,15 @@
 
             const cursor = document.getElementById('pumpkin-cursor');
             cursor.src = PROCESSED_ART.pumpkin;
+            cursor.onerror = () => {
+                document.documentElement.classList.remove('pumpkin-cursor-active');
+                cursor.style.display = 'none';
+            };
             document.documentElement.classList.add('pumpkin-cursor-active');
 
             window.addEventListener('pointermove', (event) => {
-                cursor.style.left = `${event.clientX - 54}px`;
-                cursor.style.top = `${event.clientY - 54}px`;
+                cursor.style.left = `${event.clientX - 36}px`;
+                cursor.style.top = `${event.clientY - 36}px`;
                 cursor.style.visibility = 'visible';
             });
             document.addEventListener('pointerleave', () => {
@@ -2306,6 +2250,51 @@
 
         const btnLeft = document.getElementById('btn-move-left');
         const btnRight = document.getElementById('btn-move-right');
+        let playerStageX = window.innerWidth <= 768
+            ? window.innerWidth * 0.03
+            : window.innerWidth * 0.08;
+        playerStage.style.left = `${playerStageX}px`;
+
+        let isDraggingCharacter = false;
+        let characterDragOffset = 0;
+
+        function syncCharacterCamera() {
+            const stageWidth = playerStage.getBoundingClientRect().width;
+            const minStageX = 8;
+            const maxStageX = Math.max(minStageX, window.innerWidth - stageWidth - 8);
+            const characterRatio = (playerStageX - minStageX) / Math.max(1, maxStageX - minStageX);
+            targetScrollX = Math.max(0, Math.min(MAX_SCROLL, characterRatio * MAX_SCROLL));
+        }
+
+        playerStage.addEventListener('pointerdown', (e) => {
+            if (raceActive) return;
+            isDraggingCharacter = true;
+            characterDragOffset = e.clientX - playerStageX;
+            playerStage.setPointerCapture(e.pointerId);
+        });
+
+        window.addEventListener('pointermove', (e) => {
+            if (!isDraggingCharacter) return;
+            const stageWidth = playerStage.getBoundingClientRect().width;
+            const maxStageX = Math.max(8, window.innerWidth - stageWidth - 8);
+            playerStageX = Math.max(8, Math.min(maxStageX, e.clientX - characterDragOffset));
+            playerStage.style.left = `${playerStageX}px`;
+            syncCharacterCamera();
+
+            if (Math.abs(e.movementX) > 0) {
+                const movingRight = e.movementX > 0;
+                playerStage.classList.toggle('facing-right', movingRight);
+                playerStage.classList.toggle('facing-left', !movingRight);
+                playerStage.classList.add('is-walking');
+            }
+        });
+
+        window.addEventListener('pointerup', () => {
+            if (!isDraggingCharacter) return;
+            isDraggingCharacter = false;
+            playerStage.classList.remove('is-walking');
+        });
+
         ['mousedown', 'touchstart'].forEach(evt => {
             btnLeft.addEventListener(evt, (e) => { e.preventDefault(); keysPressed.left = true; });
             btnRight.addEventListener(evt, (e) => { e.preventDefault(); keysPressed.right = true; });
@@ -2355,14 +2344,26 @@
         let wasWalking = false;
 
         function mainLoop(timestamp) {
-            const moveSpeed = 14;
-            if (keysPressed.right) targetScrollX = Math.min(MAX_SCROLL, targetScrollX + moveSpeed);
-            if (keysPressed.left) targetScrollX = Math.max(0, targetScrollX - moveSpeed);
+            const moveSpeed = 5;
+            const stageWidth = playerStage.getBoundingClientRect().width;
+            const minStageX = 8;
+            const maxStageX = Math.max(minStageX, window.innerWidth - stageWidth - 8);
 
-            const diff = targetScrollX - currentScrollX;
-            currentScrollX += diff * 0.12;
+            const scrollDiff = targetScrollX - currentScrollX;
+            currentScrollX += scrollDiff * 0.12;
 
-            if (Math.abs(diff) > 0.6) {
+            if (keysPressed.right) {
+                playerStageX = Math.min(maxStageX, playerStageX + moveSpeed);
+                playerStage.style.left = `${playerStageX}px`;
+                syncCharacterCamera();
+            }
+            if (keysPressed.left) {
+                playerStageX = Math.max(minStageX, playerStageX - moveSpeed);
+                playerStage.style.left = `${playerStageX}px`;
+                syncCharacterCamera();
+            }
+
+            if (keysPressed.left || keysPressed.right) {
                 playerStage.classList.add('is-walking');
                 if (!wasWalking) {
                     walkingFrame = false;
@@ -2374,11 +2375,11 @@
                     updatePlayerSprites(walkingFrame);
                 }
                 wasWalking = true;
-                if (diff > 0 && lastDirection !== 'right') {
+                if (keysPressed.right && lastDirection !== 'right') {
                     lastDirection = 'right';
                     playerStage.classList.remove('facing-left');
                     playerStage.classList.add('facing-right');
-                } else if (diff < 0 && lastDirection !== 'left') {
+                } else if (keysPressed.left && lastDirection !== 'left') {
                     lastDirection = 'left';
                     playerStage.classList.remove('facing-right');
                     playerStage.classList.add('facing-left');
