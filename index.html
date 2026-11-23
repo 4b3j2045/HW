@@ -255,11 +255,18 @@
         #pumpkin-cursor {
             position: fixed;
             z-index: 1000;
-            width: 72px;
-            height: 72px;
+            width: 150px;
+            height: 150px;
             object-fit: contain;
             pointer-events: none;
             visibility: hidden;
+            transition: left 70ms linear, top 70ms linear;
+            animation: pumpkinCursorMotion 700ms ease-in-out infinite;
+        }
+
+        @keyframes pumpkinCursorMotion {
+            0%, 100% { transform: translateX(-3px) rotate(-12deg); }
+            50% { transform: translateX(3px) rotate(12deg); }
         }
 
         @keyframes playerJump {
@@ -943,7 +950,7 @@
                             <div class="inline-block bg-[#FCEBF1] border-2 border-[#5D535E] rounded-2xl rounded-tl-none px-3.5 py-2 text-[#3E363F] font-bold shadow-[2px_2px_0px_rgba(93,83,94,0.15)]">謝謝你們喜歡《BEAM》，記得按時吃飯喔！ 우아해 🍚✨</div>
                         </div>
                         <div class="flex flex-col items-end">
-                            <div class="font-bold text-[#5B8DB8] mb-0.5">💎 CARAT 克拉</div>
+                            <div class="font-bold text-[#5B8DB8] mb-0.5">💎 CARAT</div>
                             <div class="inline-block bg-[#E4F2FC] border-2 border-[#5D535E] rounded-2xl rounded-tr-none px-3.5 py-2 text-[#3E363F] font-bold">🐯 호랑해！！</div>
                         </div>
                         <div>
@@ -952,9 +959,9 @@
                         </div>
 
                         <!-- 충성 訊息 -->
-                        <div class="flex flex-col items-start">
-                            <div class="font-bold text-[#5D535E] mb-0.5">💎 CARAT 克拉</div>
-                            <div class="inline-block bg-[#FFE885] border-2 border-[#5D535E] rounded-2xl rounded-tl-none px-3.5 py-2 text-[#3E363F] font-black shadow-[2px_2px_0px_rgba(93,83,94,0.15)]">
+                        <div class="flex flex-col items-end">
+                            <div class="font-bold text-[#5D535E] mb-0.5">💎 CARAT</div>
+                            <div class="inline-block bg-[#FFE885] border-2 border-[#5D535E] rounded-2xl rounded-tr-none px-3.5 py-2 text-[#3E363F] font-black shadow-[2px_2px_0px_rgba(93,83,94,0.15)]">
                                 🫡 충성
                             </div>
                         </div>
@@ -1670,7 +1677,7 @@
         // 3. 96Line 聊天室快捷發送鈕
         const chatQuickReplies = {
             horanghae: {
-                caratName: '💎 CARAT 克拉',
+                caratName: '💎 CARAT',
                 caratText: '🐯 호랑해！！',
                 replyName: '🐯 權順榮 (HOSHI)',
                 replyColor: '#FF8C42',
@@ -1688,7 +1695,7 @@
                 sticker: '🍚'
             },
             salute: {
-                caratName: '💎 CARAT 克拉',
+                caratName: '💎 CARAT',
                 caratText: '🫡 충성',
                 sticker: '🫡'
             }
@@ -2202,8 +2209,8 @@
             document.documentElement.classList.add('pumpkin-cursor-active');
 
             window.addEventListener('pointermove', (event) => {
-                cursor.style.left = `${event.clientX - 36}px`;
-                cursor.style.top = `${event.clientY - 36}px`;
+                cursor.style.left = `${event.clientX - 75}px`;
+                cursor.style.top = `${event.clientY - 75}px`;
                 cursor.style.visibility = 'visible';
             });
             document.addEventListener('pointerleave', () => {
